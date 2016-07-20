@@ -1,0 +1,8 @@
+# '.platform-darwin':
+#   'cmd-p': 'recent-finder:toggle'
+#
+# '.platform-win32':
+#   'ctrl-p': 'recent-finder:toggle'
+#
+# '.platform-linux':
+#   'ctrl-p': 'recent-finder:toggle'

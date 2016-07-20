@@ -1,0 +1,10 @@
+syntax enable
+set number
+set tabstop=2
+set autoindent
+set expandtab
+set shiftwidth=2
+set smartindent
+set nobackup
+set noswapfile
+set noundofile

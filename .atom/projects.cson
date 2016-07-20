@@ -1,0 +1,15 @@
+kenponsan:
+  title: "kenponsan"
+  paths: [
+    "/Users/take/rails/kenponsan"
+  ]
+vagrant:
+  title: "vagrant"
+  paths: [
+    "/Users/take/vagrant"
+  ]
+dropbox:
+  title: "Dropbox"
+  paths: [
+    "/Users/take/Dropbox"
+  ]
