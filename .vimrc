@@ -8,3 +8,4 @@ set smartindent
 set nobackup
 set noswapfile
 set noundofile
+set paste
