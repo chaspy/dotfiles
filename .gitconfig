@@ -1,0 +1,35 @@
+[user]
+  email = kondo.takeshi@jp.fujitsu.com
+	name = kondo takeshi
+
+[push]
+  default = current
+
+[alias]
+  st = status
+  sh = show
+  co = checkout
+  ad = add
+  cm = commit
+  pl = pull
+  br = branch -a
+  df = diff
+  ps = push
+  ft = fetch -p
+
+[core]
+  quotepath = false
+  preloadindex = true
+  fscache = true
+  attributesfile = ~/.gitattributes
+[gc]
+  auto = 256
+[http]
+  proxy = http://<user:password>@<proxy:port>
+[https]
+  proxy = http://<user:password>@<proxy:port>
+[url "https://"]
+  insteadOf = git://
+[diff "xlsx"]
+  binary = true
+  textconv = $GOPATH/bin/git-xlsx-textconv
