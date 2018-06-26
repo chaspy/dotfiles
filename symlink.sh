@@ -1,5 +1,5 @@
 #!/bin/sh
-DOT_DIRECTORY=/Users/take/github/dotfiles
+DOT_DIRECTORY=~/github.com/chaspy/dotfiles
 
 for f in .??*
 do
