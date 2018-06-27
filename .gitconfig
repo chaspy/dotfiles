@@ -24,10 +24,6 @@
   attributesfile = ~/.gitattributes
 [gc]
   auto = 256
-[http]
-  proxy = http://<user:password>@<proxy:port>
-[https]
-  proxy = http://<user:password>@<proxy:port>
 [url "https://"]
   insteadOf = git://
 [diff "xlsx"]
