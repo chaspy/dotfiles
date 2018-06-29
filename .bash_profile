@@ -23,3 +23,7 @@ open-release-pr () {
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+awsc () {
+  export AWS_DEFAULT_PROFILE=$(grep -oE "(\[).+(\])" ~/.aws/credentials | tr -d [] | peco)
+}
