@@ -19,3 +19,7 @@ open-release-pr () {
 		hub browse -- "compare/${branch}...master?expand=1&title=${title}&body=To release "
 	done
 }
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
