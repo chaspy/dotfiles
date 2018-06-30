@@ -1,6 +1,10 @@
 alias la='ls -la'
 alias tree='tree -N'
 
+# set color
+export CLICOLOR=1 
+export LSCOLORS=gxfxcxdxbxegedabagacad
+
 alias gcd='cd $(ghq root)/$(ghq list | peco)'
 alias gop='hub browse $(ghq list | peco)'
 
