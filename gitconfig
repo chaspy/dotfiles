@@ -1,6 +1,0 @@
-[alias]
-	st = status
-	c = commit
-	a = add
-	ps = push
-	pl = push
