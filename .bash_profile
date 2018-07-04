@@ -27,3 +27,5 @@ eval "$(rbenv init -)"
 awsc () {
   export AWS_DEFAULT_PROFILE=$(grep -oE "(\[).+(\])" ~/.aws/credentials | tr -d [] | peco)
 }
+
+source ~/.sshgate #secret
