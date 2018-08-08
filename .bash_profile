@@ -7,6 +7,7 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 
 alias gcd='cd $(ghq root)/$(ghq list | peco)'
 alias gop='hub browse $(ghq list | peco)'
+alias hubr='hub browse'
 
 open-release-pr () {
 	local branches=$(
@@ -31,3 +32,5 @@ eval "$(rbenv init -)"
 awsc () {
   export AWS_DEFAULT_PROFILE=$(grep -oE "(\[).+(\])" ~/.aws/credentials | tr -d [] | peco)
 }
+
+source ~/.sshgate #secret
