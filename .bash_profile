@@ -1,6 +1,9 @@
 alias la='ls -la'
 alias tree='tree -N'
 
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
 # set color
 export CLICOLOR=1 
 export LSCOLORS=gxfxcxdxbxegedabagacad
