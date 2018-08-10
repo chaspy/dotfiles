@@ -28,6 +28,13 @@ open-release-pr () {
 	done
 }
 
+svtp_ssh () {
+  cp ssh.config.template ssh.config
+  eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/id_rsa
+  cp -f ./script/ansible.cfg.test ./ansible.cfg
+}
+
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
