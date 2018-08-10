@@ -19,3 +19,8 @@ alias hubr='hub browse'
 # secret
 source ~/.sshgate #secret
 source ~/.githubtoken #secret
+
+# rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
