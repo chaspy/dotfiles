@@ -50,3 +50,12 @@ alias kb='kubectl'
 alias ka='kube-aws-credential'
 alias ks='kubectl config get-contexts | sed "/^\ /d"'
 source ~/.nvm/nvm.sh
+
+export PATH=$PATH:/Users/take/Library/Python/3.6/bin/
+source /Users/take/github.com/chaspy/nginx-up-and-running/.secret
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/private/tmp/google-cloud-sdk/path.bash.inc' ]; then source '/private/tmp/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/private/tmp/google-cloud-sdk/completion.bash.inc' ]; then source '/private/tmp/google-cloud-sdk/completion.bash.inc'; fi
