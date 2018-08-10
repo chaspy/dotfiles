@@ -44,3 +44,9 @@ awsc () {
 }
 
 source ~/.sshgate #secret
+source ~/.githubtoken #secret
+
+alias kb='kubectl'
+alias ka='kube-aws-credential'
+alias ks='kubectl config get-contexts | sed "/^\ /d"'
+source ~/.nvm/nvm.sh
