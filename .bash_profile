@@ -1,6 +1,9 @@
 alias la='ls -la'
 alias tree='tree -N'
 
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
 # set color
 export CLICOLOR=1 
 export LSCOLORS=gxfxcxdxbxegedabagacad
@@ -25,6 +28,13 @@ open-release-pr () {
 	done
 }
 
+svtp_ssh () {
+  cp ssh.config.template ssh.config
+  eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/id_rsa
+  cp -f ./script/ansible.cfg.test ./ansible.cfg
+}
+
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -34,6 +44,12 @@ awsc () {
 }
 
 source ~/.sshgate #secret
+source ~/.githubtoken #secret
+
+alias kb='kubectl'
+alias ka='kube-aws-credential'
+alias ks='kubectl config get-contexts | sed "/^\ /d"'
+source ~/.nvm/nvm.sh
 
 export PATH=$PATH:/Users/take/Library/Python/3.6/bin/
 source /Users/take/github.com/chaspy/nginx-up-and-running/.secret

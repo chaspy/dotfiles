@@ -19,3 +19,12 @@ alias hubr='hub browse'
 # GO
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+
+# secret
+source ~/.sshgate #secret
+source ~/.githubtoken #secret
+
+# rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
