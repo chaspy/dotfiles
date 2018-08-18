@@ -31,4 +31,4 @@
   textconv = $GOPATH/bin/git-xlsx-textconv
 
 [ghq]
-  root = ~/github.com
+  root = ~/go/src/github.com
