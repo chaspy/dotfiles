@@ -60,5 +60,5 @@ svtp_ssh () {
 
 # change aws default credential
 awsc () {
-  export AWS_DEFAULT_PROFILE=$(grep -oE "(\[).+(\])" ~/.aws/credentials | tr -d [] | peco)
+  export AWS_DEFAULT_PROFILE=$(grep -oE "(\[).+(\])" ~/.aws/credentials | tr -d "[]" | peco)
 }
