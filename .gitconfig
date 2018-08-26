@@ -16,6 +16,7 @@
   df = diff
   ps = push
   ft = fetch -p
+	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 
 [core]
   quotepath = false
