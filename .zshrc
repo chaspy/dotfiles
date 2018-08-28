@@ -62,3 +62,9 @@ svtp_ssh () {
 awsc () {
   export AWS_DEFAULT_PROFILE=$(grep -oE "(\[).+(\])" ~/.aws/credentials | tr -d "[]" | peco)
 }
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/take/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/take/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/take/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/take/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
