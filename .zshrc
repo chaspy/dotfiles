@@ -68,3 +68,7 @@ if [ -f '/Users/take/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/U
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/take/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/take/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# for direnv
+export EDITOR=vim
+eval "$(direnv hook zsh)"
