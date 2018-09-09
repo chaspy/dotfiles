@@ -63,12 +63,6 @@ awsc () {
   export AWS_DEFAULT_PROFILE=$(grep -oE "(\[).+(\])" ~/.aws/credentials | tr -d "[]" | peco)
 }
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/take/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/take/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/take/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/take/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 # color for less
 export LESS='-R'
 export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
@@ -76,4 +70,9 @@ export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
 # for direnv
 export EDITOR=vim
 eval "$(direnv hook zsh)"
->>>>>>> a20c83c6dededf3c02c367835fb27293368ceca8
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/take/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/take/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/take/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/take/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
