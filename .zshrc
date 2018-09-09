@@ -72,3 +72,8 @@ if [ -f '/Users/take/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then sour
 # color for less
 export LESS='-R'
 export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
+
+# for direnv
+export EDITOR=vim
+eval "$(direnv hook zsh)"
+>>>>>>> a20c83c6dededf3c02c367835fb27293368ceca8
