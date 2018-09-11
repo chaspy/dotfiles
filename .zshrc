@@ -79,3 +79,31 @@ if [ -f '/Users/take/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then sour
 
 # node brew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# kubernetes cluster
+alias kb='kubectl'
+alias ka='kube-aws-credential'
+alias ks='kubectl config get-contexts | sed "/^\ /d"'
+
+alias -g @PO='$(kubectl get po     | peco | awk "{print \$1}")'
+alias -g @RS='$(kubectl get rs     | peco | awk "{print \$1}")'
+alias -g @DP='$(kubectl get deploy | peco | awk "{print \$1}")'
+alias -g @DS='$(kubectl get ds     | peco | awk "{print \$1}")'
+alias -g @SV='$(kubectl get svc    | peco | awk "{print \$1}")'
+
+kc() {
+  test "$1" = "-" && {
+   kctx -
+   return
+  }
+  kctx "$(kctx | peco)"
+  kb auth can-i get pods > /dev/null || ka
+}
+
+kn() {
+  test "$1" = "-" && {
+   kns -
+   return
+  }
+  kns "$(kns | peco)"
+}
