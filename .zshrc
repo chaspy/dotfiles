@@ -107,3 +107,8 @@ kn() {
   }
   kns "$(kns | peco)"
 }
+
+# prompt
+PROMPT="%d
+ $ "
+
