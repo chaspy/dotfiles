@@ -33,3 +33,6 @@ set paste
 
 " Add color
 syntax on
+
+" Decimal number to increase or decrease [C-a] or [C-x]
+set nrformats =
