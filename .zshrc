@@ -108,6 +108,10 @@ kn() {
   kns "$(kns | peco)"
 }
 
+# not work Ctrl A
+# http://sotarok.hatenablog.com/entry/20080926/1222368908
+bindkey -e
+
 # prompt
 PROMPT="%d
  $ "
@@ -148,6 +152,3 @@ function rprompt-git-current-branch {
 setopt prompt_subst
 RPROMPT='`rprompt-git-current-branch`'
 
-# not work Ctrl A
-# http://sotarok.hatenablog.com/entry/20080926/1222368908
-bindkey -e
