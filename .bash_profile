@@ -59,3 +59,5 @@ if [ -f '/private/tmp/google-cloud-sdk/path.bash.inc' ]; then source '/private/t
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/private/tmp/google-cloud-sdk/completion.bash.inc' ]; then source '/private/tmp/google-cloud-sdk/completion.bash.inc'; fi
+
+export PATH="$HOME/.cargo/bin:$PATH"
