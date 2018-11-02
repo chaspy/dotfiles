@@ -64,7 +64,7 @@ awsc () {
 }
 
 # color for less
-export LESS='-R'
+export LESS="-iMR"
 export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
 
 # for direnv
