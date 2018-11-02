@@ -15,6 +15,7 @@ setopt HIST_IGNORE_DUPS
 alias gcd='ghq look $(ghq list | peco)'
 alias gop='hub browse $(ghq list | peco)'
 alias hubr='hub browse'
+alias diff='diff -u'
 
 # GO
 export GOPATH=$HOME/go
