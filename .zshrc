@@ -158,3 +158,6 @@ RPROMPT='`rprompt-git-current-branch`'
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# ruby
+export PATH="$HOME/.rbenv/shims:$PATH"
