@@ -16,6 +16,7 @@ alias gcd='ghq look $(ghq list | peco)'
 alias gop='hub browse $(ghq list | peco)'
 alias hubr='hub browse'
 alias diff='diff -u'
+alias pvi='vi $(find . -type f | peco)'
 
 # GO
 export GOPATH=$HOME/go
