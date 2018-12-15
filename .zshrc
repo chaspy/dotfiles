@@ -17,6 +17,7 @@ alias gop='hub browse $(ghq list | peco)'
 alias hubr='hub browse'
 alias diff='diff -u'
 alias pvi='vi $(find . -type f | peco)'
+alias pgg='(){vi $(git grep $1 | peco | cut -f 1 -d ":")}'
 
 # GO
 export GOPATH=$HOME/go
