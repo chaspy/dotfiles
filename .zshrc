@@ -12,7 +12,7 @@ setopt correct
 setopt HIST_IGNORE_DUPS
 
 # alias
-alias gcd='ghq look $(ghq list | peco)'
+alias gcd='cd $(ghq root)/$(ghq list | peco)'
 alias gop='hub browse $(ghq list | peco)'
 alias hubr='hub browse'
 alias diff='diff -u'
