@@ -1,0 +1,21 @@
+set commit-order = default
+
+# open pull-request includes current commit at all view
+# need open-pr in /your/path/
+bind generic P @open-pr %(commit)
+
+# show a commit id in the left of main view
+set main-view = id date author:email-user commit-title:graph=yes,refs=yes
+
+# vertival split
+set vertical-split = yes
+
+# set urf-8
+set line-graphics = utf-8
+
+# diff-highlight
+# need diff-highlight in /your/path/
+set diff-highlight = true
+
+# copy commit id to clipboard
+bind generic ` @bash -c "echo -n '%(commit)' | pbcopy"
