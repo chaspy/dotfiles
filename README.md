@@ -3,5 +3,5 @@
 ## setup
 
 ```
-$ ./setup.sh
+$ ./symlink.sh
 ```
