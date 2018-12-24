@@ -176,6 +176,11 @@ function rprompt-git-current-branch {
 setopt prompt_subst
 RPROMPT='`rprompt-git-current-branch`'
 
+PROMPT='%m:%c $(kube_prompt_info) %(!.#.$) '
+
+export KUBE_PROMPT_INFO_PREFIX="%{$fg[yellow]%}("
+export KUBE_PROMPT_INFO_SUFFIX=")%{$reset_color%}"
+
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
