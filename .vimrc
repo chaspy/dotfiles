@@ -69,3 +69,6 @@ endif
 
 filetype plugin indent on
 syntax enable
+
+" Ctrl + e opens NERDtree 
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
