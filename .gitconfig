@@ -11,11 +11,11 @@
   co = checkout
   ad = add
   cm = commit
-  pl = pull
+  pl = !git pull && git-delete-merged-branches
   br = branch -a
   df = diff
   ps = push
-  ft = fetch -p
+  ft = !git fetch -p && git-delete-merged-branches
 	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 
 [core]
