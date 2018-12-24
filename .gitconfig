@@ -32,7 +32,7 @@
   textconv = $GOPATH/bin/git-xlsx-textconv
 
 [ghq]
-  root = ~/go/src/github.com
+  root = ~/go/src
 [pager]
 	log = diff-highlight | less
 	show = diff-highlight | less

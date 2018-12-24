@@ -13,7 +13,7 @@ setopt HIST_IGNORE_DUPS
 
 # alias
 alias gcd='cd $(ghq root)/$(ghq list | peco)'
-alias gop='hub browse $(ghq list | peco)'
+alias gop='hub browse $(ghq list | grep github.com | cut -f 2,3 -d / | peco)'
 alias hubr='hub browse'
 alias diff='diff -u'
 alias pvi='vi $(find . -type f | peco)'
