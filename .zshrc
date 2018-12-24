@@ -36,7 +36,7 @@ eval "$(rbenv init -)"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-# open pr
+# functions
 ## open pull-request
 open-pr () {
     merge_commit=$(ruby -e 'print (File.readlines(ARGV[0]) & File.readlines(ARGV[1])).last' <(git rev-list --ancestry-path $1..master) <(git rev-list --first-parent $1..master))
@@ -48,6 +48,7 @@ open-pr () {
     open $url
 }
 
+## open release pr
 open-release-pr () {
   local branches=$(
       git for-each-ref --format='%(refname)' --sort=-committerdate refs/heads refs/remotes |
@@ -64,7 +65,7 @@ open-release-pr () {
   done
 }
 
-# for server-template
+## for server-template
 svtp_ssh () {
   cp ssh.config.template ssh.config
   eval "$(ssh-agent -s)"
@@ -72,7 +73,7 @@ svtp_ssh () {
   cp -f ./script/ansible.cfg.test ./ansible.cfg
 }
 
-# change aws default credential
+## change aws default credential
 awsc () {
   export AWS_DEFAULT_PROFILE=$(grep -oE "(\[).+(\])" ~/.aws/credentials | tr -d "[]" | peco)
 }
