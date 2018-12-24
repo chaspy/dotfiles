@@ -39,3 +39,5 @@
 	diff = diff-highlight | less
 [diff]
 	compactionHeuristic = true
+[fetch]
+	prune = true
