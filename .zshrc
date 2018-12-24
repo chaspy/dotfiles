@@ -37,6 +37,17 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # open pr
+## open pull-request
+open-pr () {
+    merge_commit=$(ruby -e 'print (File.readlines(ARGV[0]) & File.readlines(ARGV[1])).last' <(git rev-list --ancestry-path $1..master) <(git rev-list --first-parent $1..master))
+    if git show $merge_commit | grep -q 'pull request'
+    then
+        pull_request_number=$(git log -1 --format=%B $merge_commit | sed -e 's/^.*#\([0-9]*\).*$/\1/' | head -1)
+        url="`hub browse -u`/pull/${pull_request_number}"
+    fi
+    open $url
+}
+
 open-release-pr () {
   local branches=$(
       git for-each-ref --format='%(refname)' --sort=-committerdate refs/heads refs/remotes |
