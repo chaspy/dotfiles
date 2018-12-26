@@ -87,6 +87,14 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^R' peco-select-history
 
+function git_rebase_from_master() {
+  current_branch=$(git branch --contains | cut -d ' ' -f 2)
+  git checkout master
+  git pull origin master
+  git checkout $current_branch
+  git rebase master
+}
+
 # color for less
 export LESS="-iMR"
 export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
