@@ -25,8 +25,13 @@
   attributesfile = ~/.gitattributes
 [gc]
   auto = 256
-[url "https://"]
-  insteadOf = git://
+
+[url "git@github.com:"]
+	pushInsteadOf = git://github.com/
+	pushInsteadOf = https://github.com/
+[url "git://github.com/"]
+	insteadOf = https://github.com/
+
 [diff "xlsx"]
   binary = true
   textconv = $GOPATH/bin/git-xlsx-textconv
