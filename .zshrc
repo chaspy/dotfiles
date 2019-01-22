@@ -20,6 +20,7 @@ alias pvi='vi $(find . -type f | peco)'
 alias pgg='(){vi $(git grep $1 | peco | cut -f 1 -d ":")}'
 alias less='bat'
 alias pbc='pbcopy'
+alias ex='exit'
 
 # GO
 export GOPATH=$HOME/go
