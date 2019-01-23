@@ -198,3 +198,15 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # ruby
 export PATH="$HOME/.rbenv/shims:$PATH"
+
+# history
+## File path where history is stored
+export HISTFILE=${HOME}/.zsh_history
+## Number of histories stored in memory
+export HISTSIZE=1000
+## Number of histories stored in file
+export SAVEHIST=100000
+## Remove duplicates
+setopt hist_ignore_dups
+## record start/end point
+setopt EXTENDED_HISTORY
