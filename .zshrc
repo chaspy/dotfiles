@@ -97,6 +97,17 @@ function git_rebase_from_master() {
   git rebase master
 }
 
+## AWS
+function list-hosted-zones() {
+  aws route53 list-hosted-zones | jq '.HostedZones[]' | jq -cr '[.Id,.Name]'
+}
+
+function list-resource-record-sets-a() {
+  list-hosted-zones | peco | tr -d '[]' | cut -d',' -f 1 | xargs -I{} \
+  aws route53 list-resource-record-sets --hosted-zone-id {} | jq -r '.ResourceRecordSets[]' | jq '. | select(.Type == "A" and (. | has("AliasTarget") | not))' | \
+  jq -cr .
+}
+
 # color for less
 export LESS="-iMR"
 export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
