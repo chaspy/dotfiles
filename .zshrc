@@ -16,7 +16,6 @@ alias gcd='cd $(ghq root)/$(ghq list | peco)'
 alias gop='hub browse $(ghq list | grep github.com | cut -f 2,3 -d / | peco)'
 alias hubr='hub browse'
 alias diff='diff -u'
-alias pvi='vi $(find . -type f | peco)'
 alias pgg='(){vi $(git grep $1 | peco | cut -f 1 -d ":")}'
 alias less='bat'
 alias pbc='pbcopy'
@@ -106,6 +105,13 @@ function list-resource-record-sets-a() {
   list-hosted-zones | peco | tr -d '[]' | cut -d',' -f 1 | xargs -I{} \
   aws route53 list-resource-record-sets --hosted-zone-id {} | jq -r '.ResourceRecordSets[]' | jq '. | select(.Type == "A" and (. | has("AliasTarget") | not))' | \
   jq -cr .
+}
+
+function pvi() {
+  FILE=$(find . -type f | peco)
+  if [[ -n $FILE ]]; then
+    vi $FILE
+  fi
 }
 
 # color for less
