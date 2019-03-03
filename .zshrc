@@ -20,6 +20,7 @@ alias pgg='(){vi $(git grep $1 | peco | cut -f 1 -d ":")}'
 alias less='bat'
 alias pbc='pbcopy'
 alias ex='exit'
+alias gg='git grep'
 
 # GO
 export GOPATH=$HOME/go
@@ -220,7 +221,7 @@ export PATH="$HOME/.rbenv/shims:$PATH"
 ## File path where history is stored
 export HISTFILE=${HOME}/.zsh_history
 ## Number of histories stored in memory
-export HISTSIZE=1000
+export HISTSIZE=10000
 ## Number of histories stored in file
 export SAVEHIST=100000
 ## Remove duplicates
