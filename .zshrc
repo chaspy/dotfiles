@@ -237,3 +237,10 @@ export SAVEHIST=100000
 setopt hist_ignore_dups
 ## record start/end point
 setopt EXTENDED_HISTORY
+
+# gist
+## Change remote url from https to git
+# git remote set-url origin git@gist.github.com:b76751a0cb1474ecfafb9ab9f9eabdc9.git
+function change_gist_url_to_git (){
+  git remote set-url origin "git@gist.github.com:${1}.git"
+}
