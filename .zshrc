@@ -117,6 +117,13 @@ function pvi() {
   fi
 }
 
+# for devops test
+function generate_logs() {
+  cp -r $(ghq root)/github.com/quipper/devops-test/logs .
+  cp $(ghq root)/github.com/quipper/devops-test/generate_logs.sh .
+  ./generate_logs.sh
+}
+
 # color for less
 export LESS="-iMR"
 export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
