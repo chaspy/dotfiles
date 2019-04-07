@@ -5,7 +5,7 @@ set autoread
 set hidden
 set showcmd
 
-set number
+set number relativenumber
 set cursorline
 set cursorcolumn
 set virtualedit=onemore
