@@ -29,6 +29,7 @@ set incsearch
 set wrapscan
 set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
+set hls is
 set paste
 
 " Add color
