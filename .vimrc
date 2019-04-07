@@ -73,3 +73,9 @@ syntax enable
 
 " Ctrl + e opens NERDtree 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
+" nanka iikanji ni idou
+nnoremap H 15h
+nnoremap J 8j
+nnoremap K 8k
+nnoremap L 15l
