@@ -21,6 +21,8 @@ alias less='bat'
 alias pbc='pbcopy'
 alias ex='exit'
 alias gg='git grep'
+alias grm='git fetch && git rebase origin/master'
+alias grd='git fetch && git rebase origin/develop'
 
 # GO
 export GOPATH=$HOME/go
