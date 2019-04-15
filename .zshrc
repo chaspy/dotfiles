@@ -244,3 +244,10 @@ setopt EXTENDED_HISTORY
 function change_gist_url_to_git (){
   git remote set-url origin "git@gist.github.com:${1}.git"
 }
+
+# colordiff
+if [[ -x `which colordiff` ]]; then
+  alias diff='colordiff -u'
+else
+  alias diff='diff -u'
+fi
