@@ -79,3 +79,12 @@ nnoremap H 15h
 nnoremap J 8j
 nnoremap K 8k
 nnoremap L 15l
+
+" Add permission to file has shebang
+autocmd BufWritePost * :call AddExecmod()
+function AddExecmod()
+    let line = getline(1)
+    if strpart(line, 0, 2) == "#!"
+        call system("chmod +x ". expand("%"))
+    endif
+endfunction
