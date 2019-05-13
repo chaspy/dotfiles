@@ -23,6 +23,7 @@ alias ex='exit'
 alias gg='git grep'
 alias grm='git fetch && git rebase origin/master'
 alias grd='git fetch && git rebase origin/develop'
+alias vdu='vagrant destroy -f && vagrant up'
 
 # GO
 export GOPATH=$HOME/go
