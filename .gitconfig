@@ -11,11 +11,11 @@
   co = checkout
   ad = add
   cm = commit
-  pl = !git pull && git-delete-merged-branches
+  pl = !git pull && git delete-merged-branches
   br = branch -a
   df = diff
   ps = push
-  ft = !git fetch -p && git-delete-merged-branches
+  ft = !git fetch -p && git delete-merged-branches
 	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 
 [core]
@@ -38,10 +38,10 @@
 
 [ghq]
   root = ~/go/src
-[pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
+#[pager]
+#  log = diff-highlight | less
+#  show = diff-highlight | less
+#  diff = diff-highlight | less
 [diff]
 	compactionHeuristic = true
 [fetch]
