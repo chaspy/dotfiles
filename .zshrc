@@ -16,7 +16,6 @@ alias gcd='cd $(ghq root)/$(ghq list | peco)'
 alias gop='hub browse $(ghq list | grep github.com | cut -f 2,3 -d / | peco)'
 alias hubr='hub browse'
 alias diff='diff -u'
-alias pgg='(){vi $(git grep $1 | peco | cut -f 1 -d ":")}'
 alias less='bat'
 alias pbc='pbcopy'
 alias ex='exit'
@@ -123,6 +122,20 @@ function generate_logs() {
   cp -r $(ghq root)/github.com/quipper/devops-test/logs .
   cp $(ghq root)/github.com/quipper/devops-test/generate_logs.sh .
   ./generate_logs.sh
+}
+
+## peco git grep
+function pgg() {
+  if [ -z "${1}" ]; then
+    :
+  else
+    RESULT=$(git grep $1 | peco)
+    if [ -z "${RESULT}" ]; then
+      :
+    else
+      vi $(echo ${RESULT} | cut -f 1 -d ":")
+    fi
+  fi
 }
 
 # color for less
