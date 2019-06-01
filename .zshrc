@@ -138,6 +138,14 @@ function pgg() {
   fi
 }
 
+## peco git log
+function pgl() {
+  git log --oneline --pretty=format:'%h \[%cd\] %d %s \<%an\>' --date=format:'%Y/%m/%d %H:%M:%S' | \
+  peco | \
+  cut -d ' ' -f1 | \
+  xargs git show
+}
+
 # color for less
 export LESS="-iMR"
 export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
