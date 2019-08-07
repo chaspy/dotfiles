@@ -24,6 +24,7 @@ alias grm='git fetch && git rebase origin/master'
 alias grd='git fetch && git rebase origin/develop'
 alias vdu='vagrant destroy -f;vagrant up'
 alias gsp='git stash apply stash@{0}'
+alias sed='gsed'
 
 # GO
 export GOPATH=$HOME/go
