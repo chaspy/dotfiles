@@ -63,15 +63,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/take/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/Users/chaspy/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/Users/take/.cache/dein')
+if dein#load_state('/Users/chaspy/.cache/dein')
   call dein#begin('/Users/take/.cache/dein')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/Users/take/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('/Users/chaspy/.cache/dein/repos/github.com/Shougo/dein.vim')
 
  " プラグインリストを収めた TOML ファイル
  " 予め TOML ファイル（後述）を用意しておく
