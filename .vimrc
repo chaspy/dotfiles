@@ -67,7 +67,7 @@ set runtimepath+=/Users/chaspy/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
 if dein#load_state('/Users/chaspy/.cache/dein')
-  call dein#begin('/Users/take/.cache/dein')
+  call dein#begin('/Users/chaspy/.cache/dein')
 
   " Let dein manage dein
   " Required:
