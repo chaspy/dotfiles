@@ -12,5 +12,6 @@ mkdir -p $HOME/.config/git/
 ln -snfv ${DOT_DIRECTORY}/ignore $HOME/.config/git/ignore
 
 # for vim plugin
+mkdir -p ~/.vim/rc
 ln -snfv ${DOT_DIRECTORY}/dein.toml ~/.vim/rc/dein.toml
 ln -snfv ${DOT_DIRECTORY}/dein_lazy.toml ~/.vim/rc/dein_lazy.toml
