@@ -281,3 +281,6 @@ fi
  export PATH="$PYENV_ROOT/bin:$PATH"
  export PATH="$PYENV_ROOT/shims:$PATH"
  eval "$(pyenv init -)"
+
+# kubectl
+export PATH="$HOME/bin:$PATH"
