@@ -109,3 +109,6 @@ augroup highlightIdegraphicSpace
 augroup END
 
 colorscheme default
+
+set list
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
