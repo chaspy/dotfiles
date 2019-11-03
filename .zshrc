@@ -285,3 +285,4 @@ fi
 
 # kubectl
 export PATH="$HOME/bin:$PATH"
+export PATH="/usr/local/opt/gettext/bin:$PATH"
