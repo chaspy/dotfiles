@@ -25,6 +25,7 @@ alias grd='git fetch && git rebase origin/develop'
 alias vdu='vagrant destroy -f;vagrant up'
 alias gsp='git stash apply stash@{0}'
 alias sed='gsed'
+alias tf='terraform'
 
 # GO
 export GOPATH=$HOME/go
