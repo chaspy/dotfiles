@@ -12,3 +12,9 @@ repo = 'tyru/open-browser-github.vim'
 
 [[plugins]]
 repo = 'lambdalisue/gina.vim'
+
+[[plugins]]
+repo = '/usr/local/opt/fzf'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
