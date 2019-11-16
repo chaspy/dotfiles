@@ -19,9 +19,3 @@ hook_add = '''
 [[plugins]]
 repo = 'juliosueiras/vim-terraform-completion'
 on_ft = ['tf']
-
-[[plugins]]
-repo = 'tyru/open-browser.vim'
-
-[[plugins]]
-repo = 'tyru/open-browser-github.vim'
