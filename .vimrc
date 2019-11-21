@@ -108,7 +108,7 @@ augroup highlightIdegraphicSpace
   autocmd VimEnter,WinEnter * match IdeographicSpace /　/
 augroup END
 
-colorscheme default
+colorscheme iceberg
 
 set list
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
