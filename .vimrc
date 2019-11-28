@@ -115,3 +115,6 @@ set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
 " ref: https://qiita.com/omega999/items/23aec6a7f6d6735d033f
 set backspace=indent,eol,start
+
+" Lightline
+set laststatus=2

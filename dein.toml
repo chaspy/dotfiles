@@ -12,3 +12,6 @@ repo = 'tyru/open-browser-github.vim'
 
 [[plugins]]
 repo = 'cocopon/iceberg.vim'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
