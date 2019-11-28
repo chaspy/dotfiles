@@ -9,7 +9,7 @@ set number relativenumber
 set cursorline
 set cursorcolumn
 set virtualedit=onemore
-set smartindent
+set noautoindent
 set visualbell
 set showmatch
 set laststatus=2
