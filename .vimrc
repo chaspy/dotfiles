@@ -118,3 +118,6 @@ set backspace=indent,eol,start
 
 " Lightline
 set laststatus=2
+
+" for look
+set dictionary=/usr/share/dict/words
