@@ -39,6 +39,12 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+# ndenv
+export PATH="$HOME/.ndenv/bin:$PATH"
+eval "$(ndenv init -)"
+# need the following command to use ndenb install
+# git clone https://github.com/riywo/node-build.git $(ndenv root)/plugins/node-build
+
 # GO
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
