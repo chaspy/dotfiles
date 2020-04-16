@@ -48,6 +48,9 @@ nnoremap J 8j
 nnoremap K 8k
 nnoremap L 15l
 
+" Jump to definition
+nnoremap <silent><C-d> :LspDefinition<CR>
+
 " Add permission to file has shebang
 autocmd BufWritePost * :call AddExecmod()
 function AddExecmod()
