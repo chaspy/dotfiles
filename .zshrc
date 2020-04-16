@@ -162,12 +162,6 @@ export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
 export EDITOR=vim
 eval "$(direnv hook zsh)"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/take/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/take/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/take/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/take/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 # node brew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
@@ -291,3 +285,9 @@ fi
 # kubectl
 export PATH="$HOME/bin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/completion.zsh.inc'; fi
