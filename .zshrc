@@ -291,3 +291,7 @@ if [ -f '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/pa
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/completion.zsh.inc'; fi
+
+# krew
+# ref: https://krew.sigs.k8s.io/docs/user-guide/setup/install/#bash
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
