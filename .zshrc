@@ -25,6 +25,7 @@ alias vdu='vagrant destroy -f;vagrant up'
 alias gsp='git stash apply stash@{0}'
 alias sed='gsed'
 alias tf='terraform'
+alias gsort="sort -V"
 
 # GO
 export GOPATH=$HOME/go
