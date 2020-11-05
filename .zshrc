@@ -26,6 +26,7 @@ alias gsp='git stash apply stash@{0}'
 alias sed='gsed'
 alias tf='terraform'
 alias gsort="sort -V"
+alias tff="terraform fmt --recursive"
 
 # GO
 export GOPATH=$HOME/go
