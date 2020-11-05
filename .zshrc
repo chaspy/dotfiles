@@ -27,6 +27,7 @@ alias sed='gsed'
 alias tf='terraform'
 alias gsort="sort -V"
 alias tff="terraform fmt --recursive"
+alias date="/usr/local/bin/gdate"
 
 # GO
 export GOPATH=$HOME/go
