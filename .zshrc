@@ -298,3 +298,5 @@ if [ -f '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/co
 # krew
 # ref: https://krew.sigs.k8s.io/docs/user-guide/setup/install/#bash
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+source <(kubectl completion zsh)
+source ~/.kubectl_fzf.plugin.zsh
