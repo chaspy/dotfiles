@@ -119,3 +119,6 @@ set laststatus=2
 
 " for look
 set dictionary=/usr/share/dict/words
+
+" vim-go
+let g:go_fmt_command = "goimports"
