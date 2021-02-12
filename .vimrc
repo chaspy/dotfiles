@@ -134,7 +134,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " vim-autoformat
-au BufWrite * :Autoformat
+au BufWrite *.sh :Autoformat
 
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
