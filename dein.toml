@@ -36,3 +36,6 @@ repo = 'itspriddle/vim-shellcheck'
 
 [[plugins]]
 repo = 'scrooloose/syntastic'
+
+[[plugins]]
+repo = 'Chiel92/vim-autoformat'
