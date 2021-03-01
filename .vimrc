@@ -135,6 +135,7 @@ let g:syntastic_check_on_wq = 0
 
 " vim-autoformat
 au BufWrite *.sh :Autoformat
+au BufWrite *.tf :Autoformat
 
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
