@@ -81,7 +81,7 @@ open-release-pr () {
   for branch in $(echo $branches)
   do
     title="Release ${branch#release/}"
-    hub browse -- "compare/${branch}...master?expand=1&title=${title}&body=To release "
+    gh pr create -w -H develop -B "$branch" -t "$title" -b "To release"
   done
 }
 
