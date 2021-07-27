@@ -162,6 +162,20 @@ function pgl() {
   xargs git show
 }
 
+function zenhub_assignee_url() {
+  assignee=$1
+  URL="https://app.zenhub.com/workspaces/k12-sre-team-601d05eba026df000f1640fa/board?assignees=${assignee}&filterLogic=any&repos=35426098,18326008"
+  echo "${URL}"
+}
+
+function open_zenhub_sre() {
+  for m in yuya-takeyama chaspy motobrew suzuki-shunsuke int128 vadasambar;
+  do
+    url=$(zenhub_assignee_url "${m}")
+    open "${url}"
+  done
+}
+
 # color for less
 export LESS="-iMR"
 export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
