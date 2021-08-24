@@ -169,7 +169,7 @@ function zenhub_assignee_url() {
 }
 
 function open_zenhub_sre() {
-  for m in yuya-takeyama chaspy motobrew suzuki-shunsuke int128 vadasambar;
+  for m in yuya-takeyama chaspy motobrew suzuki-shunsuke int128 vadasambar 44smkn;
   do
     url=$(zenhub_assignee_url "${m}")
     open "${url}"
