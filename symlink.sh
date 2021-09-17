@@ -2,7 +2,7 @@
 DOT_DIRECTORY=$GOPATH/src/github.com/chaspy/dotfiles
 
 for f in .??*; do
-	[ "$f" = ".git" -o "$f" = ".toml" ] && continue
+	[ "$f" = ".git" ] || [ "$f" = ".toml" ] && continue
 	ln -snfv "${DOT_DIRECTORY}/${f}" "${HOME}/${f}"
 done
 
