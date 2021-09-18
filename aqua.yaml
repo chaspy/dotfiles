@@ -1,0 +1,38 @@
+registries:
+- type: standard
+  ref: v0.8.4 # renovate: depName=suzuki-shunsuke/aqua-registry
+
+packages:
+- name: direnv/direnv
+  registry: standard
+  version: v2.28.0 # renovate: depName=direnv/direnv
+- name: github/hub
+  registry: standard
+  version: v2.14.2 # renovate: depName=github/hub
+- name: stedolan/jq
+  registry: standard
+  version: jq-1.6 # renovate: depName=stedolan/jq
+- name: kubernetes/kubectl
+  registry: standard
+  version: v1.22.0 # TODO renovate
+- name: peco/peco
+  registry: standard
+  version: v0.5.10 # renovate: depName=peco/peco
+- name: stern/stern
+  registry: standard
+  version: v1.20.1 # renovate: depName=stern/stern
+- name: gohugoio/hugo
+  registry: standard
+  version: v0.88.1 # renovate: depName=gohugoio/hugo
+- name: junegunn/fzf
+  registry: standard
+  version: 0.27.2 # renovate: depName=junegunn/fzf
+- name: Peltoche/lsd
+  registry: standard
+  version: 0.20.1 # renovate: depName=Peltoche/lsd
+- name: kubernetes-sigs/kind
+  registry: standard
+  version: v0.11.1 # renovate: depName=kubernetes-sigs/kind
+- name: peco/peco
+  registry: standard
+  version: v0.5.10 # renovate: depName=peco/peco

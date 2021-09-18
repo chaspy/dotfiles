@@ -320,3 +320,6 @@ if [ -f '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/co
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 source <(kubectl completion zsh)
 source ~/.kubectl_fzf.plugin.zsh
+
+# aqua
+export PATH=$HOME/.aqua/global/.aqua/bin:$PATH
