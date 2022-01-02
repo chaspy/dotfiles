@@ -12,3 +12,8 @@ hook_add = '''
 [[plugins]]
 repo = 'juliosueiras/vim-terraform-completion'
 on_ft = ['tf']
+
+[[plugins]]
+repo = 'tsandall/vim-rego'
+on_ft = ['rego']
+
