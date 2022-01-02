@@ -60,6 +60,13 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # functions
+
+unset-aws-cred () {
+  unset AWS_ACCESS_KEY_ID
+  unset AWS_SECRET_ACCESS_KEY
+  unset AWS_SESSION_TOKEN
+}
+
 ## open pull-request
 open-pr () {
     merge_commit=$(ruby -e 'print (File.readlines(ARGV[0]) & File.readlines(ARGV[1])).last' <(git rev-list --ancestry-path $1..master) <(git rev-list --first-parent $1..master))
