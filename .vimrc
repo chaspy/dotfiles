@@ -136,6 +136,10 @@ let g:syntastic_check_on_wq = 0
 " vim-autoformat
 au BufWrite *.sh :Autoformat
 au BufWrite *.tf :Autoformat
+au BufWritePre *.rego :Autoformat
+
+let g:formatdef_rego = '"opa fmt"'
+let g:formatters_rego = ['rego']
 
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
