@@ -36,6 +36,7 @@ alias r53ap="aws route53 list-hosted-zones | jq -cr '.HostedZones[] | [.Id, .Nam
 alias r53rp="aws route53 list-hosted-zones | jq -cr '.HostedZones[] | [.Id, .Name] | @tsv' | peco | cut -f1 | xargs -I {} aws route53 list-resource-record-sets --hosted-zone-id {} | jq -cr '.ResourceRecordSets[] | select(.ResourceRecords != null) | [.Name, .Type, .TTL, .ResourceRecords[].Value] | @tsv' | peco"
 alias ghpc="gh pr create -d -f"
 alias gupm="git fetch upstream && git checkout master && git merge upstream/master"
+alias kbctx="kubectx"
 
 # GO
 export GOPATH=$HOME/go
