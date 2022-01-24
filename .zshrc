@@ -107,7 +107,7 @@ svtp_ssh () {
 
 ## change aws default credential
 awsc () {
-  export AWS_DEFAULT_PROFILE=$(grep -oE "(\[).+(\])" ~/.aws/config | tr -d "[]" | peco)
+  export AWS_DEFAULT_PROFILE=$(grep -oE "(\[).+(\])" ~/.aws/config | tr -d "[]" | cut -d ' ' -f2 | peco)
 }
 
 function peco-select-history() {
