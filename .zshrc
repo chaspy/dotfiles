@@ -61,6 +61,9 @@ eval "$(ndenv init -)"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+# brew
+export PATH=$PATH:/opt/homebrew/bin
+
 # functions
 
 unset-aws-cred () {
