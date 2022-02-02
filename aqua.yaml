@@ -23,7 +23,7 @@ packages:
   version: v1.21.0 # renovate: depName=stern/stern
 - name: gohugoio/hugo
   registry: standard
-  version: v0.88.1 # renovate: depName=gohugoio/hugo
+  version: v0.89.4 # renovate: depName=gohugoio/hugo
 - name: junegunn/fzf
   registry: standard
   version: 0.28.0 # renovate: depName=junegunn/fzf
