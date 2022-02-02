@@ -51,7 +51,7 @@ source ~/.githubtoken #secret
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+eval "$(rbenv init - zsh)"
 
 # ndenv
 export PATH="$HOME/.ndenv/bin:$PATH"
