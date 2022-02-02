@@ -45,7 +45,6 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/bin
 
 # secret
-source ~/.sshgate #secret
 source ~/.githubtoken #secret
 
 # rbenv
