@@ -42,6 +42,8 @@ alias kbctx="kubectx"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+export PATH=$PATH:/usr/local/bin
+
 # secret
 source ~/.sshgate #secret
 source ~/.githubtoken #secret
