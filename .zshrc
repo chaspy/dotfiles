@@ -52,11 +52,9 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh)"
 
-# ndenv
-export PATH="$HOME/.ndenv/bin:$PATH"
-eval "$(ndenv init -)"
-# need the following command to use ndenb install
-# git clone https://github.com/riywo/node-build.git $(ndenv root)/plugins/node-build
+# nodenv
+export PATH="$HOME/.nodenv/bin:$PATH"
+eval "$(nodenv init - zsh)"
 
 # GO
 export GOPATH=$HOME/go
@@ -318,10 +316,11 @@ else
 fi
 
  # pyenv
- export PYENV_ROOT="$HOME/.pyenv"
- export PATH="$PYENV_ROOT/bin:$PATH"
- export PATH="$PYENV_ROOT/shims:$PATH"
- eval "$(pyenv init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$PYENV_ROOT/shims:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 
 # kubectl
 export PATH="$HOME/bin:$PATH"
