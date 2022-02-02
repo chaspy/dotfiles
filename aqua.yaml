@@ -42,3 +42,6 @@ packages:
 - name: cli/cli
   registry: standard
   version: v2.5.0 # renovate: depName=cli/cli
+- name: ahmetb/kubectx
+  registry: standard
+  version: v0.9.4 # renovate: depName=ahmetb/kubectx
