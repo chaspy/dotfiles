@@ -66,6 +66,9 @@ export PATH=$PATH:$GOPATH/bin
 # brew
 export PATH=$PATH:/opt/homebrew/bin
 
+# aqua
+export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
+
 # functions
 
 unset-aws-cred () {
