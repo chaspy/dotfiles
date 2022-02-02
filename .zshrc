@@ -44,9 +44,6 @@ export PATH=$PATH:$GOPATH/bin
 
 export PATH=$PATH:/usr/local/bin
 
-# secret
-source ~/.githubtoken #secret
-
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH="$HOME/.rbenv/bin:$PATH"
