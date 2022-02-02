@@ -15,7 +15,7 @@ setopt HIST_IGNORE_DUPS
 alias gcd='cd $(ghq root)/$(ghq list | peco)'
 alias pcd='cd $(dirname $(find . | peco))'
 alias gop='hub browse $(ghq list | grep github.com | cut -f 2,3 -d / | peco)'
-alias hubr='hub browse'
+alias gho='gh repo view --web'
 alias diff='diff -u'
 alias pbc='pbcopy'
 alias ex='exit'
