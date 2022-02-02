@@ -38,6 +38,9 @@ alias ghpc="gh pr create -d -f"
 alias gupm="git fetch upstream && git checkout master && git merge upstream/master"
 alias kbctx="kubectx"
 
+# brew
+export PATH=$PATH:/opt/homebrew/bin
+
 # GO
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
@@ -56,9 +59,6 @@ eval "$(nodenv init - zsh)"
 # GO
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-
-# brew
-export PATH=$PATH:/opt/homebrew/bin
 
 # aqua
 export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
