@@ -328,3 +328,6 @@ if [ -f '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/pa
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/completion.zsh.inc'; fi
+
+# secret
+source ~/.github_access_token
