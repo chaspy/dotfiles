@@ -323,11 +323,11 @@ eval "$(pyenv init -)"
 export PATH="$HOME/bin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/chaspy/weekendersfm/google-cloud-sdk/completion.zsh.inc'; fi
-
 # secret
 source ~/.github_access_token
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/chaspy/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chaspy/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/chaspy/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chaspy/google-cloud-sdk/completion.zsh.inc'; fi
