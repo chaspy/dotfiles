@@ -1,6 +1,6 @@
 registries:
 - type: standard
-  ref: v0.14.4 # renovate: depName=aquaproj/aqua-registry
+  ref: v2.5.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
 - name: direnv/direnv
@@ -45,3 +45,6 @@ packages:
 - name: ahmetb/kubectx
   registry: standard
   version: v0.9.4 # renovate: depName=ahmetb/kubectx
+- name: open-policy-agent/conftest
+  registry: standard
+  version: v0.31.0 # renovate: depName=open-policy-agent/conftest
