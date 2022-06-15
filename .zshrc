@@ -73,6 +73,15 @@ unset-aws-cred () {
   unset AWS_SESSION_TOKEN
 }
 
+## Create an issue
+ghc-pddm () {
+  if [ -z "${2}" ]; then
+    echo "usage: ghc-pddm title body"
+  else
+    gh issue create -a chaspy -b "${2}" -t "${1}" --repo quipper/k12-pdd-management-jp
+  fi
+}
+
 ## open pull-request
 open-pr () {
     merge_commit=$(ruby -e 'print (File.readlines(ARGV[0]) & File.readlines(ARGV[1])).last' <(git rev-list --ancestry-path $1..master) <(git rev-list --first-parent $1..master))
