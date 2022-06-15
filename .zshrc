@@ -36,6 +36,7 @@ alias r53rp="aws route53 list-hosted-zones | jq -cr '.HostedZones[] | [.Id, .Nam
 alias ghpc="gh pr create -d -f"
 alias gupm="git fetch upstream && git checkout master && git merge upstream/master"
 alias kbctx="kubectx"
+alias git='/opt/homebrew/bin/git'
 
 # brew
 export PATH=$PATH:/opt/homebrew/bin
