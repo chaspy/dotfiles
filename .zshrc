@@ -37,6 +37,7 @@ alias ghpc="gh pr create -d -f"
 alias gupm="git fetch upstream && git checkout master && git merge upstream/master"
 alias kbctx="kubectx"
 alias git='/opt/homebrew/bin/git'
+alias shuf='gshuf'
 
 # brew
 export PATH=$PATH:/opt/homebrew/bin
