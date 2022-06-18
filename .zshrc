@@ -19,11 +19,7 @@ alias gho='gh repo view --web'
 alias diff='diff -u'
 alias pbc='pbcopy'
 alias ex='exit'
-alias gg='git grep'
-alias grm='git pull origin master && git rebase origin/master'
-alias grd='git pull origin develop && git rebase origin/develop'
 alias vdu='vagrant destroy -f;vagrant up'
-alias gsp='git stash apply stash@{0}'
 alias sed='gsed'
 alias tf='terraform'
 alias gsort="sort -V"
@@ -34,10 +30,17 @@ alias vdu="vagrant destroy -f && vagrant up"
 alias r53ap="aws route53 list-hosted-zones | jq -cr '.HostedZones[] | [.Id, .Name] | @tsv' | peco | cut -f1 | xargs -I {} aws route53 list-resource-record-sets --hosted-zone-id {} | jq -cr '.ResourceRecordSets[] | select(.AliasTarget != null) | [.Name, .Type, .AliasTarget.DNSName] | @tsv' | peco"
 alias r53rp="aws route53 list-hosted-zones | jq -cr '.HostedZones[] | [.Id, .Name] | @tsv' | peco | cut -f1 | xargs -I {} aws route53 list-resource-record-sets --hosted-zone-id {} | jq -cr '.ResourceRecordSets[] | select(.ResourceRecords != null) | [.Name, .Type, .TTL, .ResourceRecords[].Value] | @tsv' | peco"
 alias ghpc="gh pr create -d -f"
-alias gupm="git fetch upstream && git checkout master && git merge upstream/master"
 alias kbctx="kubectx"
-alias git='/opt/homebrew/bin/git'
 alias shuf='gshuf'
+
+# git
+alias git='/opt/homebrew/bin/git'
+alias g='git'
+alias gupm="git fetch upstream && git checkout master && git merge upstream/master"
+alias gsp='git stash apply stash@{0}'
+alias gg='git grep'
+alias grm='git pull origin master && git rebase origin/master'
+alias grd='git pull origin develop && git rebase origin/develop'
 
 # brew
 export PATH=$PATH:/opt/homebrew/bin
