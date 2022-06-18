@@ -36,6 +36,7 @@ alias shuf='gshuf'
 # git
 alias git='/opt/homebrew/bin/git'
 alias g='git'
+alias gs='git status'
 alias gupm="git fetch upstream && git checkout master && git merge upstream/master"
 alias gsp='git stash apply stash@{0}'
 alias gg='git grep'
