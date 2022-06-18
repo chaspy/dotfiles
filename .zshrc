@@ -212,9 +212,7 @@ eval "$(direnv hook zsh)"
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # kubernetes cluster
-alias kb='kubectl'
-alias ka='kube-aws-credential'
-alias ks='kubectl config get-contexts | sed "/^\ /d"'
+alias k='kubectl'
 
 alias -g @PO='$(kubectl get po     | peco | awk "{print \$1}")'
 alias -g @RS='$(kubectl get rs     | peco | awk "{print \$1}")'
