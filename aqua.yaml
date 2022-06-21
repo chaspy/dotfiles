@@ -5,7 +5,7 @@ registries:
 packages:
 - name: direnv/direnv
   registry: standard
-  version: v2.28.0 # renovate: depName=direnv/direnv
+  version: v2.32.1 # renovate: depName=direnv/direnv
 - name: github/hub
   registry: standard
   version: v2.14.2 # renovate: depName=github/hub
