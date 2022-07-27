@@ -43,6 +43,7 @@ alias gg='git grep'
 alias grm='git pull origin master && git rebase origin/master'
 alias grd='git pull origin develop && git rebase origin/develop'
 alias releasestg='gh pr create --head feature/develop --base develop --title "Release(stg)" --web'
+alias gcfd='git checkout feature/develop && git pull'
 
 # brew
 export PATH=$PATH:/opt/homebrew/bin
