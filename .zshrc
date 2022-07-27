@@ -42,6 +42,7 @@ alias gsp='git stash apply stash@{0}'
 alias gg='git grep'
 alias grm='git pull origin master && git rebase origin/master'
 alias grd='git pull origin develop && git rebase origin/develop'
+alias releasestg='gh pr create --head feature/develop --base develop --title "Release(stg)" --web'
 
 # brew
 export PATH=$PATH:/opt/homebrew/bin
@@ -70,6 +71,14 @@ export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua
 export AQUA_GLOBAL_CONFIG="${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml"
 
 # functions
+
+gr () {
+  git rebase -i HEAD~$1
+}
+
+b64d () {
+  echo "${1}" | base64 --decode
+}
 
 unset-aws-cred () {
   unset AWS_ACCESS_KEY_ID
