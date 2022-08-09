@@ -17,3 +17,6 @@ ln -snfv "${DOT_DIRECTORY}"/dein_lazy.toml ~/.vim/rc/dein_lazy.toml
 
 # for aqua
 ln -snfv "${DOT_DIRECTORY}"/aqua.yaml ~/.config/aquaproj-aqua/aqua.yaml
+
+# cvs code
+ln -snfv "${DOT_DIRECTORY}"/settings.json ~/Library/Application\ Support/Code/User/settings.json
