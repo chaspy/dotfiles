@@ -1,10 +1,13 @@
 {
-"ruby.lint": {
+  "ruby.lint": {
     "rubocop": true
   },
   "[ruby]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "rebornix.ruby"
   },
-  "ruby.format": "rubocop"
+  "ruby.format": "rubocop",
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
 }
