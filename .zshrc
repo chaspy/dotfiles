@@ -32,6 +32,8 @@ alias r53rp="aws route53 list-hosted-zones | jq -cr '.HostedZones[] | [.Id, .Nam
 alias ghpc="gh pr create -d -f"
 alias kbctx="kubectx"
 alias shuf='gshuf'
+alias a='cd ..'
+alias aa='cd ../..'
 
 # git
 alias git='/opt/homebrew/bin/git'
