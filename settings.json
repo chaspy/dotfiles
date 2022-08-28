@@ -9,5 +9,8 @@
   "ruby.format": "rubocop",
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "javascript.format.semicolons": "remove",
+  "prettier.semi": false,
+  "prettier.singleQuote": true
 }
