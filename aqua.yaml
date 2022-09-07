@@ -51,3 +51,7 @@ packages:
 - name: derailed/k9s
   registry: standard
   version: v0.25.18
+- name: hashicorp/terraform
+  registry: standard
+  version: v1.2.8
+
