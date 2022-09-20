@@ -12,7 +12,7 @@ setopt correct
 setopt HIST_IGNORE_DUPS
 
 # alias
-alias gcd='cd $(ghq root)/$(ghq list | peco)'
+alias grp='cd $(ghq root)/$(ghq list | peco)'
 alias pcd='cd $(dirname $(find . | peco))'
 alias gop='hub browse $(ghq list | grep github.com | cut -f 2,3 -d / | peco)'
 alias gho='gh repo view --web'
@@ -30,10 +30,43 @@ alias vdu="vagrant destroy -f && vagrant up"
 alias r53ap="aws route53 list-hosted-zones | jq -cr '.HostedZones[] | [.Id, .Name] | @tsv' | peco | cut -f1 | xargs -I {} aws route53 list-resource-record-sets --hosted-zone-id {} | jq -cr '.ResourceRecordSets[] | select(.AliasTarget != null) | [.Name, .Type, .AliasTarget.DNSName] | @tsv' | peco"
 alias r53rp="aws route53 list-hosted-zones | jq -cr '.HostedZones[] | [.Id, .Name] | @tsv' | peco | cut -f1 | xargs -I {} aws route53 list-resource-record-sets --hosted-zone-id {} | jq -cr '.ResourceRecordSets[] | select(.ResourceRecords != null) | [.Name, .Type, .TTL, .ResourceRecords[].Value] | @tsv' | peco"
 alias ghpc="gh pr create -d -f"
-alias kbctx="kubectx"
 alias shuf='gshuf'
 alias a='cd ..'
 alias aa='cd ../..'
+
+# docker-compose
+alias dcr='docker-compose run'
+alias dcu='docker-compose up'
+alias dcd='docker-compose down'
+alias dcb='docker-compose build'
+
+# kubernetes
+alias k='kubectl'
+alias kbctx="kubectx"
+alias kall='kubectl get $(kubectl api-resources --namespaced=true --verbs=list -o name | tr "\n" "," | sed -e "s/,$//")'
+
+alias -g @PO='$(kubectl get po     | peco | awk "{print \$1}")'
+alias -g @RS='$(kubectl get rs     | peco | awk "{print \$1}")'
+alias -g @DP='$(kubectl get deploy | peco | awk "{print \$1}")'
+alias -g @DS='$(kubectl get ds     | peco | awk "{print \$1}")'
+alias -g @SV='$(kubectl get svc    | peco | awk "{print \$1}")'
+
+kc() {
+  test "$1" = "-" && {
+   kctx -
+   return
+  }
+  kctx "$(kctx | peco)"
+  kb auth can-i get pods > /dev/null || ka
+}
+
+kn() {
+  test "$1" = "-" && {
+   kns -
+   return
+  }
+  kns "$(kns | peco)"
+}
 
 # git
 alias git='/opt/homebrew/bin/git'
@@ -46,6 +79,10 @@ alias grm='git pull origin master && git rebase origin/master'
 alias grd='git pull origin develop && git rebase origin/develop'
 alias releasestg='gh pr create --head feature/develop --base develop --title "Release(stg)" --web'
 alias gcfd='git checkout feature/develop && git pull'
+alias ga='git add'
+alias gcm='git checkout master && git pull origin master'
+alias gcma='git checkout main && git pull origin main'
+alias gcd='git checkout develop && git pull origin develop'
 
 # brew
 export PATH=$PATH:/opt/homebrew/bin
@@ -227,32 +264,6 @@ eval "$(direnv hook zsh)"
 
 # node brew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-
-# kubernetes cluster
-alias k='kubectl'
-
-alias -g @PO='$(kubectl get po     | peco | awk "{print \$1}")'
-alias -g @RS='$(kubectl get rs     | peco | awk "{print \$1}")'
-alias -g @DP='$(kubectl get deploy | peco | awk "{print \$1}")'
-alias -g @DS='$(kubectl get ds     | peco | awk "{print \$1}")'
-alias -g @SV='$(kubectl get svc    | peco | awk "{print \$1}")'
-
-kc() {
-  test "$1" = "-" && {
-   kctx -
-   return
-  }
-  kctx "$(kctx | peco)"
-  kb auth can-i get pods > /dev/null || ka
-}
-
-kn() {
-  test "$1" = "-" && {
-   kns -
-   return
-  }
-  kns "$(kns | peco)"
-}
 
 source <(kubectl completion zsh)
 
