@@ -20,7 +20,7 @@ packages:
   version: v0.5.10 # renovate: depName=peco/peco
 - name: stern/stern
   registry: standard
-  version: v1.21.0 # renovate: depName=stern/stern
+  version: v1.22.0 # renovate: depName=stern/stern
 - name: gohugoio/hugo
   registry: standard
   version: v0.89.4 # renovate: depName=gohugoio/hugo
