@@ -47,7 +47,7 @@ packages:
   version: v0.9.4 # renovate: depName=ahmetb/kubectx
 - name: open-policy-agent/conftest
   registry: standard
-  version: v0.31.0 # renovate: depName=open-policy-agent/conftest
+  version: v0.35.0 # renovate: depName=open-policy-agent/conftest
 - name: derailed/k9s
   registry: standard
   version: v0.25.18
