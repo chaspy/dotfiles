@@ -32,7 +32,7 @@ packages:
   version: 0.20.1 # renovate: depName=Peltoche/lsd
 - name: kubernetes-sigs/kind
   registry: standard
-  version: v0.11.1 # renovate: depName=kubernetes-sigs/kind
+  version: v0.17.0 # renovate: depName=kubernetes-sigs/kind
 - name: peco/peco
   registry: standard
   version: v0.5.10 # renovate: depName=peco/peco
