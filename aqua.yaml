@@ -41,7 +41,7 @@ packages:
   version: v0.37.1 # renovate: depName=open-policy-agent/opa
 - name: cli/cli
   registry: standard
-  version: v2.5.0 # renovate: depName=cli/cli
+  version: v2.20.2 # renovate: depName=cli/cli
 - name: ahmetb/kubectx
   registry: standard
   version: v0.9.4 # renovate: depName=ahmetb/kubectx
