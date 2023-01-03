@@ -311,11 +311,6 @@ function rprompt-git-current-branch {
 setopt prompt_subst
 RPROMPT='`rprompt-git-current-branch`'
 
-PROMPT='%m:%c $(kube_prompt_info) %(!.#.$) '
-
-export KUBE_PROMPT_INFO_PREFIX="%{$fg[yellow]%}("
-export KUBE_PROMPT_INFO_SUFFIX=")%{$reset_color%}"
-
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -358,9 +353,6 @@ eval "$(pyenv init -)"
 # kubectl
 export PATH="$HOME/bin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
-
-# secret
-source ~/.github_access_token
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/chaspy/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chaspy/google-cloud-sdk/path.zsh.inc'; fi
