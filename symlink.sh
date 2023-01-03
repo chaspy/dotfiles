@@ -1,5 +1,5 @@
 #!/bin/sh
-DOT_DIRECTORY=$GOPATH/src/github.com/chaspy/dotfiles
+DOT_DIRECTORY=/Users/chaspy/go/src/github.com/chaspy/dotfiles
 
 for f in .??*; do
 	[ "$f" = ".git" ] || [ "$f" = ".toml" ] && continue
