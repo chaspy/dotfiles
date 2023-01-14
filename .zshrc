@@ -84,6 +84,7 @@ alias ga='git add'
 alias gcm='git checkout master && git pull origin master'
 alias gcma='git checkout main && git pull origin main'
 alias gcd='git checkout develop && git pull origin develop'
+alias gt='cd "$(git rev-parse --show-toplevel)"'
 
 # brew
 export PATH=$PATH:/opt/homebrew/bin
