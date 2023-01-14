@@ -1,4 +1,5 @@
 # completion
+fpath=(~/.zsh $fpath)
 autoload -Uz compinit
 compinit
 
@@ -359,3 +360,5 @@ if [ -f '/Users/chaspy/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chaspy/g
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/chaspy/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chaspy/google-cloud-sdk/completion.zsh.inc'; fi
+export DVM_DIR="/Users/chaspy/.dvm"
+export PATH="$DVM_DIR/bin:$PATH"
