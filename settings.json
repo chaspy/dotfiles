@@ -12,6 +12,7 @@
   "editor.formatOnSave": true,
   "javascript.format.semicolons": "remove",
   "prettier.semi": false,
-  "prettier.singleQuote": true,
-  "liveServer.settings.donotShowInfoMsg": true
+  "liveServer.settings.donotShowInfoMsg": true,
+  "deno.enable": true,
+  "prettier.singleQuote": true
 }
