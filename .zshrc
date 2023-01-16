@@ -54,19 +54,19 @@ alias -g @SV='$(kubectl get svc    | peco | awk "{print \$1}")'
 
 kc() {
   test "$1" = "-" && {
-   kctx -
+   kubectx -
    return
   }
-  kctx "$(kctx | peco)"
-  kb auth can-i get pods > /dev/null || ka
+  kubectx "$(kubectx | peco)"
+  kubectl auth can-i get pods > /dev/null || ka
 }
 
 kn() {
   test "$1" = "-" && {
-   kns -
+   kubens -
    return
   }
-  kns "$(kns | peco)"
+  kubens "$(kubens | peco)"
 }
 
 # git
@@ -274,9 +274,6 @@ source <(kubectl completion zsh)
 bindkey -e
 
 # prompt
-PROMPT="%d
- $ "
-
 function rprompt-git-current-branch {
   local branch_name st branch_status
 
@@ -312,6 +309,10 @@ function rprompt-git-current-branch {
 
 setopt prompt_subst
 RPROMPT='`rprompt-git-current-branch`'
+
+autoload -U colors; colors
+source /Users/chaspy/go/src/github.com/superbrothers/zsh-kubectl-prompt/kubectl.zsh
+PROMPT='%~ %F{45}($ZSH_KUBECTL_PROMPT)%f $ '
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
