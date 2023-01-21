@@ -52,6 +52,8 @@ alias -g @DP='$(kubectl get deploy | peco | awk "{print \$1}")'
 alias -g @DS='$(kubectl get ds     | peco | awk "{print \$1}")'
 alias -g @SV='$(kubectl get svc    | peco | awk "{print \$1}")'
 
+alias kb='kustomize build'
+
 kc() {
   test "$1" = "-" && {
    kubectx -
@@ -364,3 +366,8 @@ if [ -f '/Users/chaspy/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chaspy/g
 if [ -f '/Users/chaspy/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chaspy/google-cloud-sdk/completion.zsh.inc'; fi
 export DVM_DIR="/Users/chaspy/.dvm"
 export PATH="$DVM_DIR/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
