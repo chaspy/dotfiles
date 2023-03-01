@@ -258,6 +258,14 @@ function open_zenhub_sre() {
   done
 }
 
+# replace all
+function grepsed() {
+  if [ -z "${2}" ]; then
+    echo "usage: grepsed old new"
+  fi
+  grep -r $1 | cut -d':' -f1 | awk '!a[$0]++{print}' | xargs -I{} sed -i '' s/$1/$2/g {}
+}
+
 # color for less
 export LESS="-iMR"
 export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
