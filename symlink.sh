@@ -20,3 +20,4 @@ ln -snfv "${DOT_DIRECTORY}"/aqua.yaml ~/.config/aquaproj-aqua/aqua.yaml
 
 # cvs code
 ln -snfv "${DOT_DIRECTORY}"/settings.json ~/Library/Application\ Support/Code/User/settings.json
+
