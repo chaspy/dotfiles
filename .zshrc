@@ -97,7 +97,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 export PATH=$PATH:/usr/local/bin
-export PATH="/opt/homebrew/opt/go@1.17/bin:$PATH"
+export PATH="/opt/homebrew/opt/go@1.20/bin:$PATH"
 
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
@@ -264,7 +264,7 @@ function grepsed() {
   if [ -z "${2}" ]; then
     echo "usage: grepsed old new"
   fi
-  grep -r $1 | cut -d':' -f1 | awk '!a[$0]++{print}' | xargs -I{} sed -i '' s/$1/$2/g {}
+  git grep -r $1 | cut -d':' -f1 | awk '!a[$0]++{print}' | xargs -I{} sed -i '' s/$1/$2/g {}
 }
 
 # color for less
