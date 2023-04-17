@@ -14,5 +14,6 @@
   "prettier.semi": false,
   "liveServer.settings.donotShowInfoMsg": true,
   "deno.enable": true,
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "go.toolsManagement.autoUpdate": true
 }
