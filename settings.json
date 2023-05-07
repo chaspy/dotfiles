@@ -16,4 +16,6 @@
   "deno.enable": true,
   "prettier.singleQuote": true,
   "go.toolsManagement.autoUpdate": true
+  "markdown-preview-enhanced.liveUpdate": true,
+  "editor.inlineSuggest.enabled": true
 }
