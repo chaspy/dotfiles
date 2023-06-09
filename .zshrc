@@ -35,6 +35,9 @@ alias shuf='gshuf'
 alias a='cd ..'
 alias aa='cd ../..'
 
+# https://github.com/Nutlope/aicommits
+alias aic='aicommits  --type conventional --generate 5'
+
 # docker-compose
 alias dcr='docker-compose run'
 alias dcu='docker-compose up'
