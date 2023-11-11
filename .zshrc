@@ -57,6 +57,8 @@ alias -g @SV='$(kubectl get svc    | peco | awk "{print \$1}")'
 
 alias kb='kustomize build'
 
+alias python='python3'
+
 kc() {
   test "$1" = "-" && {
    kubectx -
@@ -89,7 +91,7 @@ alias ga='git add'
 alias gcm='git checkout master && git pull origin master'
 alias gcma='git checkout main && git pull origin main'
 alias gcd='git checkout develop && git pull origin develop'
-alias gt='cd "$(git rev-parse --show-toplevel)"'
+alias cdt='cd "$(git rev-parse --show-toplevel)"'
 alias gcf='git commit --amend --no-edit'
 
 # brew
@@ -382,4 +384,24 @@ export PATH="$DVM_DIR/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#compdef gt
+###-begin-gt-completions-###
+#
+# yargs command completion script
+#
+# Installation: /opt/homebrew/Cellar/graphite/0.20.21/bin/gt completion >> ~/.zshrc
+#    or /opt/homebrew/Cellar/graphite/0.20.21/bin/gt completion >> ~/.zprofile on OSX.
+#
+_gt_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" /opt/homebrew/Cellar/graphite/0.20.21/bin/gt --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _gt_yargs_completions gt
+###-end-gt-completions-###
 
