@@ -25,7 +25,6 @@ alias sed='gsed'
 alias tf='terraform'
 alias gsort="sort -V"
 alias tff="terraform fmt --recursive"
-alias ls='lsd'
 alias ec2p="aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | [.InstanceId, (.Tags[] | select(.Key == \"Name\").Value), (.Tags[] | select(.Key == \"Environment\").Value), .PublicIpAddress, .PrivateIpAddress, .InstanceType, .State.Name] | @tsv' | peco | cut -f1 | xargs -I{} aws ec2 describe-instances --instance-ids {}"
 alias vdu="vagrant destroy -f && vagrant up"
 alias r53ap="aws route53 list-hosted-zones | jq -cr '.HostedZones[] | [.Id, .Name] | @tsv' | peco | cut -f1 | xargs -I {} aws route53 list-resource-record-sets --hosted-zone-id {} | jq -cr '.ResourceRecordSets[] | select(.AliasTarget != null) | [.Name, .Type, .AliasTarget.DNSName] | @tsv' | peco"
@@ -332,6 +331,7 @@ PROMPT='%~ %F{45}($ZSH_KUBECTL_PROMPT)%f $ '
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
+source "$HOME/.cargo/env"
 
 # ruby
 export PATH="$HOME/.rbenv/shims:$PATH"
