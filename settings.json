@@ -1,4 +1,10 @@
 {
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true,
+    "editor.inlayHints.enabled": "off"
+  },
+
   "ruby.lint": {
     "rubocop": true
   },
@@ -15,7 +21,7 @@
   "liveServer.settings.donotShowInfoMsg": true,
   "deno.enable": true,
   "prettier.singleQuote": true,
-  "go.toolsManagement.autoUpdate": true
+  "go.toolsManagement.autoUpdate": true,
   "markdown-preview-enhanced.liveUpdate": true,
   "editor.inlineSuggest.enabled": true
 }
