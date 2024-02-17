@@ -4,3 +4,4 @@ alias g='git'
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
+. "$HOME/.cargo/env"
