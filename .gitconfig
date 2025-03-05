@@ -1,6 +1,6 @@
 [user]
-	email = chaspy@users.noreply.github.com
-	name = kondo takeshi
+	email = 10370988+chaspy@users.noreply.github.com
+	name = Takeshi Kondo
 
 [push]
   default = current
@@ -51,3 +51,10 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

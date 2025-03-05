@@ -1,11 +1,3 @@
-y completion
-fpath=(~/.zsh $fpath)
-autoload -Uz compinit
-compinit
-
-# fill selected parts
-zstyle ':completion:*' menu select
-
 # fix command typo
 setopt correct
 
@@ -25,7 +17,6 @@ alias sed='gsed'
 alias tf='terraform'
 alias gsort="sort -V"
 alias tff="terraform fmt --recursive"
-alias ls='lsd'
 alias ec2p="aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | [.InstanceId, (.Tags[] | select(.Key == \"Name\").Value), (.Tags[] | select(.Key == \"Environment\").Value), .PublicIpAddress, .PrivateIpAddress, .InstanceType, .State.Name] | @tsv' | peco | cut -f1 | xargs -I{} aws ec2 describe-instances --instance-ids {}"
 alias vdu="vagrant destroy -f && vagrant up"
 alias r53ap="aws route53 list-hosted-zones | jq -cr '.HostedZones[] | [.Id, .Name] | @tsv' | peco | cut -f1 | xargs -I {} aws route53 list-resource-record-sets --hosted-zone-id {} | jq -cr '.ResourceRecordSets[] | select(.AliasTarget != null) | [.Name, .Type, .AliasTarget.DNSName] | @tsv' | peco"
@@ -56,6 +47,8 @@ alias -g @DS='$(kubectl get ds     | peco | awk "{print \$1}")'
 alias -g @SV='$(kubectl get svc    | peco | awk "{print \$1}")'
 
 alias kb='kustomize build'
+
+alias python='python3'
 
 kc() {
   test "$1" = "-" && {
@@ -89,7 +82,7 @@ alias ga='git add'
 alias gcm='git checkout master && git pull origin master'
 alias gcma='git checkout main && git pull origin main'
 alias gcd='git checkout develop && git pull origin develop'
-alias gt='cd "$(git rev-parse --show-toplevel)"'
+alias cdt='cd "$(git rev-parse --show-toplevel)"'
 alias gcf='git commit --amend --no-edit'
 
 # brew
@@ -398,3 +391,25 @@ PERL_MM_OPT="INSTALL_BASE=/Users/01045513/perl5"; export PERL_MM_OPT;
 export PATH="/Library/TeX/texbin:$PATH"
 
 export PATH="/Users/01045513/.local/bin:$PATH"
+=======
+#compdef gt
+###-begin-gt-completions-###
+#
+# yargs command completion script
+#
+# Installation: /opt/homebrew/Cellar/graphite/0.20.21/bin/gt completion >> ~/.zshrc
+#    or /opt/homebrew/Cellar/graphite/0.20.21/bin/gt completion >> ~/.zprofile on OSX.
+#
+_gt_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" /opt/homebrew/Cellar/graphite/0.20.21/bin/gt --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _gt_yargs_completions gt
+###-end-gt-completions-###
+
+>>>>>>> refs/remotes/origin/master
