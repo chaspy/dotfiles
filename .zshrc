@@ -1,4 +1,4 @@
-# completion
+y completion
 fpath=(~/.zsh $fpath)
 autoload -Uz compinit
 compinit
@@ -99,12 +99,15 @@ export PATH=$PATH:/opt/homebrew/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-export PATH=$PATH:/usr/local/bin
+export PATH=/usr/local/bin:$PATH
 export PATH="/opt/homebrew/opt/go@1.20/bin:$PATH"
+
+# golangci-lint
+source <(golangci-lint completion bash)
 
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH=$"$PATH:$HOME/.rbenv/bin"
 eval "$(rbenv init -)"
 
 # nodenv
@@ -330,6 +333,7 @@ PROMPT='%~ %F{45}($ZSH_KUBECTL_PROMPT)%f $ '
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"
 
 # ruby
 export PATH="$HOME/.rbenv/shims:$PATH"
@@ -370,12 +374,6 @@ eval "$(pyenv init -)"
 # kubectl
 export PATH="$HOME/bin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/chaspy/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chaspy/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/chaspy/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chaspy/google-cloud-sdk/completion.zsh.inc'; fi
 export DVM_DIR="/Users/chaspy/.dvm"
 export PATH="$DVM_DIR/bin:$PATH"
 
@@ -383,3 +381,20 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/01045513/Downloads/google-cloud-sdk 2/path.zsh.inc' ]; then . '/Users/01045513/Downloads/google-cloud-sdk 2/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/01045513/Downloads/google-cloud-sdk 2/completion.zsh.inc' ]; then . '/Users/01045513/Downloads/google-cloud-sdk 2/completion.zsh.inc'; fi
+
+PATH="/Users/01045513/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/01045513/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/01045513/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/01045513/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/01045513/perl5"; export PERL_MM_OPT;
+
+export PATH="/Library/TeX/texbin:$PATH"
+
+export PATH="/Users/01045513/.local/bin:$PATH"

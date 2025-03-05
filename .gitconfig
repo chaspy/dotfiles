@@ -23,6 +23,7 @@
   preloadindex = true
   fscache = true
   attributesfile = ~/.gitattributes
+	editor = vim
 [gc]
   auto = 256
 

@@ -1,5 +1,6 @@
 #!/bin/sh
-DOT_DIRECTORY=/Users/chaspy/go/src/github.com/chaspy/dotfiles
+export GOPATH=/Users/01045513/go
+DOT_DIRECTORY=/Users/01045513/go/src/github.com/chaspy/dotfiles
 
 for f in .??*; do
 	[ "$f" = ".git" ] || [ "$f" = ".toml" ] && continue

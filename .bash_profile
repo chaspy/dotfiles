@@ -60,4 +60,12 @@ if [ -f '/private/tmp/google-cloud-sdk/path.bash.inc' ]; then source '/private/t
 # The next line enables shell command completion for gcloud.
 if [ -f '/private/tmp/google-cloud-sdk/completion.bash.inc' ]; then source '/private/tmp/google-cloud-sdk/completion.bash.inc'; fi
 
-export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"
+
+# >>> JVM installed by coursier >>>
+export JAVA_HOME="/Users/01045513/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.26%252B4/OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.26_4.tar.gz/jdk-11.0.26+4/Contents/Home"
+# <<< JVM installed by coursier <<<
+
+# >>> coursier install directory >>>
+export PATH="$PATH:/Users/01045513/Library/Application Support/Coursier/bin"
+# <<< coursier install directory <<<
