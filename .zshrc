@@ -4,6 +4,16 @@ setopt correct
 # don't leave duplicate command in history
 setopt HIST_IGNORE_DUPS
 
+# カスタムの zsh 補完ディレクトリを先頭に追加
+fpath=("${HOME}/.zsh" $fpath)
+# 現在の fpath から不要なディレクトリを除外（例として /usr/local/share/zsh/site-functions）
+fpath=(${fpath:#/usr/local/share/zsh/site-functions})
+
+
+# 以降、通常の初期化処理
+autoload -Uz compinit
+compinit -i
+
 # alias
 alias grp='cd $(ghq root)/$(ghq list | peco)'
 alias pcd='cd $(dirname $(find . | peco))'
@@ -401,6 +411,13 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# Created by `pipx` on 2024-09-06 00:44:09
+export PATH="$PATH:/Users/chaspy/.local/bin"
+
+# Perl
+if which plenv > /dev/null; then eval "$(plenv init - zsh)"; fi
+
+# chaspy/renovate-safety
 export RENOVATE_SAFETY_LANGUAGE=ja
 
 # claude code

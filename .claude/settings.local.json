@@ -6,7 +6,12 @@
       "Bash(ls:*)",
       "Bash(cp:*)",
       "Bash(mv:*)",
-      "Bash(./symlink.sh)"
+      "Bash(./symlink.sh)",
+      "Bash(git rm:*)",
+      "Bash(git add:*)",
+      "Bash(git rebase:*)",
+      "Bash(rm:*)",
+      "Bash(cat:*)"
     ],
     "deny": []
   }

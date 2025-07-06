@@ -23,5 +23,16 @@
   "prettier.singleQuote": true,
   "go.toolsManagement.autoUpdate": true,
   "markdown-preview-enhanced.liveUpdate": true,
-  "editor.inlineSuggest.enabled": true
+  "editor.inlineSuggest.enabled": true,
+  "roo-cline.allowedCommands": [
+    "npm test",
+    "npm install",
+    "tsc",
+    "git log",
+    "git diff",
+    "git show"
+  ],
+  "markdown.marp.themes": ["./slides/themes/srenext.css"],
+  "markdown.marp.strictPathResolutionDuringExport": true,
+  "workbench.colorTheme": "Default Light Modern"
 }
