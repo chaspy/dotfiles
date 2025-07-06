@@ -391,26 +391,6 @@ PERL_MM_OPT="INSTALL_BASE=/Users/01045513/perl5"; export PERL_MM_OPT;
 export PATH="/Library/TeX/texbin:$PATH"
 
 export PATH="/Users/01045513/.local/bin:$PATH"
-=======
-#compdef gt
-###-begin-gt-completions-###
-#
-# yargs command completion script
-#
-# Installation: /opt/homebrew/Cellar/graphite/0.20.21/bin/gt completion >> ~/.zshrc
-#    or /opt/homebrew/Cellar/graphite/0.20.21/bin/gt completion >> ~/.zprofile on OSX.
-#
-_gt_yargs_completions()
-{
-  local reply
-  local si=$IFS
-  IFS=$'
-' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" /opt/homebrew/Cellar/graphite/0.20.21/bin/gt --get-yargs-completions "${words[@]}"))
-  IFS=$si
-  _describe 'values' reply
-}
-compdef _gt_yargs_completions gt
-###-end-gt-completions-###
 
 # flutter
 export PATH="/Users/chaspy/flutter/bin:$PATH"
@@ -420,3 +400,8 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export RENOVATE_SAFETY_LANGUAGE=ja
+
+# claude code
+export MAX_THINKING_TOKENS=31999
