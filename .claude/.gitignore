@@ -1,0 +1,8 @@
+# Project-specific session data
+projects/
+
+# Session-specific todo lists
+todos/
+
+# Cache and analytics data
+statsig/

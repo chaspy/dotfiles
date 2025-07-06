@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Read(*)",
+      "Edit(*)",
+      "Search(*)",
+      "WebSearch(*)",
+      "WebFetch(*)"
+    ],
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(su *)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~/*)",
+      "Bash(dd *)",
+      "Bash(mkfs *)",
+      "Bash(chown * /etc/*)",
+      "Bash(chmod 7?? /etc/*)",
+      "Bash(shutdown *)",
+      "Bash(reboot *)",
+      "Bash(halt *)",
+      "Bash(poweroff *)",
+      "Bash(curl * | bash *)",
+      "Bash(wget * | bash *)"
+    ]
+  },
+  "defaultMode": "bypassPermissions",
+  "env": {
+    "TZ": "Asia/Tokyo",
+    "MAX_THINKING_TOKENS": "31999"
+  },
+  "theme": "dark",
+  "verbose": false
+}

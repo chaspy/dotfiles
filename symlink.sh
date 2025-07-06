@@ -1,6 +1,6 @@
 #!/bin/sh
-export GOPATH=/Users/01045513/go
-DOT_DIRECTORY=/Users/01045513/go/src/github.com/chaspy/dotfiles
+export GOPATH=/Users/chaspy/go
+DOT_DIRECTORY=/Users/chaspy/go/src/github.com/chaspy/dotfiles
 
 for f in .??*; do
 	[ "$f" = ".git" ] || [ "$f" = ".toml" ] && continue
@@ -21,4 +21,7 @@ ln -snfv "${DOT_DIRECTORY}"/aqua.yaml ~/.config/aquaproj-aqua/aqua.yaml
 
 # cvs code
 ln -snfv "${DOT_DIRECTORY}"/settings.json ~/Library/Application\ Support/Code/User/settings.json
+
+# for claude
+ln -snfv "${DOT_DIRECTORY}"/.claude ~/.claude
 
