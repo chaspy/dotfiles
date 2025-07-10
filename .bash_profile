@@ -46,3 +46,5 @@ export JAVA_HOME="/Users/01045513/Library/Caches/Coursier/arc/https/github.com/a
 # >>> coursier install directory >>>
 export PATH="$PATH:/Users/01045513/Library/Application Support/Coursier/bin"
 # <<< coursier install directory <<<
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

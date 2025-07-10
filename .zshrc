@@ -105,9 +105,6 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=/usr/local/bin:$PATH
 export PATH="/opt/homebrew/opt/go@1.20/bin:$PATH"
 
-# golangci-lint
-source <(golangci-lint completion bash)
-
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH=$"$PATH:$HOME/.rbenv/bin"
@@ -330,8 +327,6 @@ function rprompt-git-current-branch {
 setopt prompt_subst
 RPROMPT='`rprompt-git-current-branch`'
 
-autoload -U colors; colors
-source /Users/chaspy/go/src/github.com/superbrothers/zsh-kubectl-prompt/kubectl.zsh
 PROMPT='%~ %F{45}($ZSH_KUBECTL_PROMPT)%f $ '
 
 # rust
@@ -382,7 +377,6 @@ export PATH="$DVM_DIR/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
@@ -422,3 +416,5 @@ export RENOVATE_SAFETY_LANGUAGE=ja
 
 # claude code
 export MAX_THINKING_TOKENS=31999
+
+export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
