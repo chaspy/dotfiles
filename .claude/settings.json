@@ -3,11 +3,11 @@
     "defaultMode": "acceptEdits",
     "allow": [
       "Bash",
-      "Read(*)",
-      "Edit(*)",
-      "Search(*)",
-      "WebSearch(*)",
-      "WebFetch(*)"
+      "Read",
+      "Edit",
+      "Search",
+      "WebSearch",
+      "WebFetch"
     ],
     "deny": [
       "Bash(sudo *)",
