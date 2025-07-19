@@ -25,4 +25,5 @@ ln -snfv "${DOT_DIRECTORY}"/settings.json ~/Library/Application\ Support/Code/Us
 # for claude
 mkdir -p ~/.claude
 ln -snfv "${DOT_DIRECTORY}"/.claude/settings.json ~/.claude/settings.json
+ln -snfv "${DOT_DIRECTORY}"/.claude/commands ~/.claude/commands
 
