@@ -1,1 +1,1 @@
-常に日本語で回答せよ。常に ultrathink せよ。
+/Users/chaspy/go/src/github.com/chaspy/dotfiles/.claude/CLAUDE.md
