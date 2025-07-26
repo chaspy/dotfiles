@@ -6,6 +6,24 @@ set -o pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 DOT_DIRECTORY="$SCRIPT_DIR"
 
+# 循環参照チェック関数
+check_circular_link() {
+    local link_path="$1"
+    if [ -L "$link_path" ]; then
+        local target=$(readlink "$link_path")
+        # 絶対パスに変換
+        if [[ "$target" != /* ]]; then
+            target="$(dirname "$link_path")/$target"
+        fi
+        # 自分自身を指していないかチェック
+        if [ "$target" = "$link_path" ]; then
+            echo "⚠️  循環参照を検出: $link_path -> $target"
+            return 1
+        fi
+    fi
+    return 0
+}
+
 # --- dotfiles 本体 ----------------------------------------------------------
 for f in "$DOT_DIRECTORY"/.??*; do
   base="$(basename "$f")"
@@ -39,11 +57,14 @@ ln -snfv "$DOT_DIRECTORY/settings.json" "$VSCODE_USER_DIR/settings.json"
 
 # Claude
 mkdir -p "$HOME/.claude"
-# 既存のシンボリンクが循環参照になっている場合は削除
-[ -L "$HOME/.claude/settings.json" ] && rm -f "$HOME/.claude/settings.json"
-[ -L "$HOME/.claude/CLAUDE.md" ] && rm -f "$HOME/.claude/CLAUDE.md"
+# 既存のシンボリンクの循環参照をチェック
+for link in "$HOME/.claude/settings.json" "$HOME/.claude/CLAUDE.md" "$HOME/.claude/commands"; do
+    if ! check_circular_link "$link"; then
+        echo "  -> 削除: $link"
+        rm -f "$link"
+    fi
+done
 ln -snfv "$DOT_DIRECTORY/.claude/settings.json"       "$HOME/.claude/settings.json"
-ln -snfv "$DOT_DIRECTORY/.claude/settings.local.json" "$HOME/.claude/settings.local.json"
 ln -snfv "$DOT_DIRECTORY/.claude/commands"            "$HOME/.claude/commands"
 ln -snfv "$DOT_DIRECTORY/.claude/CLAUDE.md"           "$HOME/.claude/CLAUDE.md"
 
