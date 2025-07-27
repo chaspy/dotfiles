@@ -33,7 +33,7 @@
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": {"tools": ["Edit", "MultiEdit", "Write"]},
+        "matcher": "Edit|MultiEdit|Write",
         "hooks": [
           {
             "type": "command",
@@ -44,7 +44,7 @@
     ],
     "PreToolUse": [
       {
-        "matcher": {"tools": ["Bash"]},
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command", 
