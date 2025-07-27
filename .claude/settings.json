@@ -30,21 +30,28 @@
     "TZ": "Asia/Tokyo",
     "MAX_THINKING_TOKENS": "31999"
   },
-  "aliases": {
-    "pr": "/pr-create",
-    "c": "/compact",
-    "t": "/test",
-    "d": "/debug",
-    "e": "/explain"
-  },
   "hooks": {
-    "pre-commit": {
-      "command": "echo 'コミット前チェック実行中...'",
-      "description": "コミット前の通知"
-    },
-    "post-file-edit": {
-      "command": "echo 'ファイル編集完了: {{file_path}}'",
-      "description": "ファイル編集後の通知"
-    }
+    "PostToolUse": [
+      {
+        "matcher": {"tools": ["Edit", "MultiEdit", "Write"]},
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'ファイル編集完了'"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": {"tools": ["Bash"]},
+        "hooks": [
+          {
+            "type": "command", 
+            "command": "echo 'コマンド実行前チェック'"
+          }
+        ]
+      }
+    ]
   }
 }
