@@ -54,7 +54,7 @@ for f in "$DOT_DIRECTORY"/.??*; do
 
   # 同期しないファイル／ディレクトリ
   case "$base" in
-    .git|.toml) continue ;;
+    .git|.toml|.claude) continue ;;
   esac
 
   ln -snfv "$DOT_DIRECTORY/$base" "$HOME/$base"
