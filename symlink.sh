@@ -6,21 +6,45 @@ set -o pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 DOT_DIRECTORY="$SCRIPT_DIR"
 
-# 循環参照チェック関数
+# 循環参照チェック関数（改良版）
 check_circular_link() {
     local link_path="$1"
-    if [ -L "$link_path" ]; then
-        local target=$(readlink "$link_path")
-        # 絶対パスに変換
-        if [[ "$target" != /* ]]; then
-            target="$(dirname "$link_path")/$target"
-        fi
-        # 自分自身を指していないかチェック
-        if [ "$target" = "$link_path" ]; then
-            echo "⚠️  循環参照を検出: $link_path -> $target"
-            return 1
-        fi
+    
+    # シンボリンクでない場合は問題なし
+    if [ ! -L "$link_path" ]; then
+        return 0
     fi
+    
+    # シンボリンクが壊れている場合は削除対象
+    if [ ! -e "$link_path" ]; then
+        echo "⚠️  壊れたシンボリンクを検出: $link_path"
+        return 1
+    fi
+    
+    # リンクターゲットを確認
+    local target=$(readlink "$link_path")
+    
+    # 絶対パスに変換
+    if [[ "$target" != /* ]]; then
+        target="$(dirname "$link_path")/$target"
+    fi
+    
+    # 正規化されたパスで比較
+    local normalized_link=$(readlink -f "$link_path" 2>/dev/null || echo "$link_path")
+    local normalized_target=$(readlink -f "$target" 2>/dev/null || echo "$target")
+    
+    # 自分自身を指している場合は循環参照
+    if [ "$normalized_link" = "$normalized_target" ]; then
+        echo "⚠️  循環参照を検出: $link_path -> $target"
+        return 1
+    fi
+    
+    # dotfilesリポジトリ内のファイルが、同じファイルを指している場合もチェック
+    if [[ "$target" == "$DOT_DIRECTORY"* ]] && [ "$target" = "$link_path" ]; then
+        echo "⚠️  dotfiles内循環参照を検出: $link_path -> $target"
+        return 1
+    fi
+    
     return 0
 }
 
