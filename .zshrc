@@ -418,3 +418,4 @@ export RENOVATE_SAFETY_LANGUAGE=ja
 export MAX_THINKING_TOKENS=31999
 
 export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
