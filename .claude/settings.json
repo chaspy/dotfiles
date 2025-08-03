@@ -97,7 +97,8 @@
   },
   "env": {
     "TZ": "Asia/Tokyo",
-    "MAX_THINKING_TOKENS": "31999"
+    "MAX_THINKING_TOKENS": "31999",
+    "DISABLE_AUTOUPDATER": "1"
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
