@@ -416,6 +416,7 @@ export RENOVATE_SAFETY_LANGUAGE=ja
 
 # claude code
 export MAX_THINKING_TOKENS=31999
+export DISABLE_AUTOUPDATER=1
 
 export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
