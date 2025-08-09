@@ -1,4 +1,9 @@
 {
+  "statusLine": {
+    "enabled": true,
+    "type": "command",
+    "command": "BR=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '-'); printf '📁 %s 🌿 %s 🤖 %s ' \"${PWD##*/}\" \"${BR}\" \"${CLAUDE_MODEL:-opus-4.1}\"; ccusage blocks --statusline --once 2>/dev/null || printf ' Tokens:n/a'; printf ' 🕒 %s' \"$(date +%H:%M)\""
+  },
   "permissions": {
     "defaultMode": "acceptEdits",
     "allow": [
