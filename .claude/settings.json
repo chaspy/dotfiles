@@ -2,7 +2,7 @@
   "statusLine": {
     "enabled": true,
     "type": "command",
-    "command": "BR=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '-'); printf '📁 %s 🌿 %s 🤖 %s ' \"${PWD##*/}\" \"${BR}\" \"${CLAUDE_MODEL:-opus-4.1}\"; ccusage blocks --statusline --once 2>/dev/null || printf ' Tokens:n/a'; printf ' 🕒 %s' \"$(date +%H:%M)\""
+    "command": "BR=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '-'); USAGE=$(ccusage blocks --statusline --once 2>/dev/null | awk '{print $1}' | grep -o '[0-9]\\+%' || echo '?%'); RESET=$(ccusage blocks --statusline --once 2>/dev/null | grep -oE 'reset: [0-9]{2}:[0-9]{2}' | awk '{print $2}' || echo '??:??'); printf '📁 %s 🌿 %s 🤖 %s ⏳%s reset@%s' \"${PWD##*/}\" \"${BR}\" \"${CLAUDE_MODEL:-opus-4.1}\" \"$USAGE\" \"$RESET\""
   },
   "permissions": {
     "defaultMode": "acceptEdits",
