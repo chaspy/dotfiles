@@ -12,15 +12,23 @@
       "Edit",
       "Search",
       "WebSearch",
-      "WebFetch"
+      "WebFetch",
+      "mcp__serena__*"
     ],
     "deny": [
       "Bash(sudo *)",
       "Bash(su *)",
       "Bash(rm -rf /*)",
       "Bash(rm -rf ~/*)",
+      "Bash(rm -rf .)",
+      "Bash(rm -rf ..)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(prisma migrate reset)",
       "Bash(dd *)",
       "Bash(mkfs *)",
+      "Bash(fdisk *)",
+      "Bash(parted *)",
       "Bash(chown * /etc/*)",
       "Bash(chmod 7?? /etc/*)",
       "Bash(shutdown *)",
@@ -28,13 +36,39 @@
       "Bash(halt *)",
       "Bash(poweroff *)",
       "Bash(curl * | bash *)",
-      "Bash(wget * | bash *)"
+      "Bash(wget * | bash *)",
+      "Bash(curl * | sh *)",
+      "Bash(wget * | sh *)",
+      "Bash(chmod 777 /*)",
+      "Bash(chmod -R 777 *)",
+      "Bash(chown -R * /*)",
+      "Bash(> /dev/sda*)",
+      "Bash(format *)",
+      "Bash(diskutil *)",
+      "Bash(kill -9 -1)",
+      "Bash(:(){ :|:& };:)",
+      "Bash(mv /* /dev/null)",
+      "Bash(find / -delete)",
+      "Bash(find ~ -delete)",
+      "Bash(systemctl stop *)",
+      "Bash(service * stop)",
+      "Bash(launchctl unload *)",
+      "Bash(npm install -g * --unsafe-perm)",
+      "Bash(pip install * --break-system-packages)",
+      "Bash(brew uninstall --force *)",
+      "Bash(apt-get remove --purge *)",
+      "Bash(yum remove -y *)",
+      "Bash(pacman -Rdd *)"
     ]
   },
   "env": {
     "TZ": "Asia/Tokyo",
     "MAX_THINKING_TOKENS": "31999"
   },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "serena"
+  ],
   "hooks": {
     "PostToolUse": [
       {
