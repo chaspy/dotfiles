@@ -115,7 +115,8 @@
         ]
       },
       {
-        "matcher": "Bash(git commit *)",
+        "matcher": "Bash",
+        "condition": "git commit",
         "hooks": [
           {
             "type": "command",
