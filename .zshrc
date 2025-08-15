@@ -380,12 +380,6 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/01045513/Downloads/google-cloud-sdk 2/path.zsh.inc' ]; then . '/Users/01045513/Downloads/google-cloud-sdk 2/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/01045513/Downloads/google-cloud-sdk 2/completion.zsh.inc' ]; then . '/Users/01045513/Downloads/google-cloud-sdk 2/completion.zsh.inc'; fi
-
 PATH="/Users/01045513/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/Users/01045513/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/Users/01045513/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
@@ -420,3 +414,9 @@ export DISABLE_AUTOUPDATER=1
 
 export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-cloud-sdk/completion.zsh.inc'; fi
