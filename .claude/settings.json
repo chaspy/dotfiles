@@ -119,7 +119,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if [[ \"$TOOL_INPUT\" == *\"git commit\"* ]]; then echo 'コミット完了、プッシュします...' && git push; fi"
+            "command": "echo 'PostToolUse テスト実行'"
           }
         ]
       }
