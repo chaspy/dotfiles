@@ -15,6 +15,9 @@ autoload -Uz compinit
 compinit -i
 
 # alias
+
+alias wb='workbloom'
+
 alias grp='cd $(ghq root)/$(ghq list | peco)'
 alias pcd='cd $(dirname $(find . | peco))'
 alias gop='hub browse $(ghq list | grep github.com | cut -f 2,3 -d / | peco)'
