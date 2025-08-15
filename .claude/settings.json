@@ -1,7 +1,7 @@
 {
   "statusLine": {
     "type": "command",
-    "command": "BR=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '-'); TOKENS=$(timeout 3s npx ccusage daily --json 2>/dev/null | jq -r '.days[-1].totalTokens // 0' | awk '{printf \"%.0fK\", $1/1000}' 2>/dev/null || echo '?K'); MODEL=$(echo \"${CLAUDE_MODEL:-sonnet-4}\" | sed 's/claude-//'); printf '📁 %s 🌿 %s 🤖 %s 🔢%s' \"${PWD##*/}\" \"${BR}\" \"${MODEL}\" \"$TOKENS\""
+    "command": "BR=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '-'); MODEL=$(echo \"${CLAUDE_MODEL:-sonnet-4}\" | sed 's/claude-//'); printf '📁 %s 🌿 %s 🤖 %s 🔢%s' \"${PWD##*/}\" \"${BR}\" \"${MODEL}\" \"$TOKENS\""
   },
   "permissions": {
     "defaultMode": "acceptEdits",
@@ -111,6 +111,15 @@
           {
             "type": "command",
             "command": "echo 'ファイル編集完了'"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash(git commit *)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'コミット完了、プッシュします...' && git push"
           }
         ]
       }
