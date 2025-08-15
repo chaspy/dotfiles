@@ -116,11 +116,10 @@
       },
       {
         "matcher": "Bash",
-        "condition": "git commit",
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'コミット完了、プッシュします...' && git push"
+            "command": "if [[ \"$TOOL_INPUT\" == *\"git commit\"* ]]; then echo 'コミット完了、プッシュします...' && git push; fi"
           }
         ]
       }
