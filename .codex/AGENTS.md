@@ -1,0 +1,3 @@
+- Answer in Japanese.
+- Always provide evidence through an internet search. Do not answer based on guesswork.
+- When asked for a github URL, use the gh command.
