@@ -54,7 +54,7 @@ for f in "$DOT_DIRECTORY"/.??*; do
 
   # 同期しないファイル／ディレクトリ
   case "$base" in
-    .git|.toml|.claude) continue ;;
+    .git|.toml|.claude|.codex) continue ;;
   esac
 
   ln -snfv "$DOT_DIRECTORY/$base" "$HOME/$base"
@@ -92,9 +92,16 @@ ln -snfv "$DOT_DIRECTORY/.claude/settings.json"       "$HOME/.claude/settings.js
 ln -snfv "$DOT_DIRECTORY/.claude/commands"            "$HOME/.claude/commands"
 ln -snfv "$DOT_DIRECTORY/.claude/CLAUDE.md"           "$HOME/.claude/CLAUDE.md"
 
+# Codex
+mkdir -p "$HOME/.codex"
+if ! check_circular_link "$HOME/.codex/config.toml"; then
+    echo "  -> 削除: $HOME/.codex/config.toml"
+    rm -f "$HOME/.codex/config.toml"
+fi
+ln -snfv "$DOT_DIRECTORY/.codex/config.toml" "$HOME/.codex/config.toml"
+
 # --- 追加で必要なら ---------------------------------------------------------
 # GOPATH を使う場合だけ有効化（Go 1.21 以降は通常不要）
 # export GOPATH="$HOME/go"
 
 echo "✅ dotfiles symlink 完了"
-
