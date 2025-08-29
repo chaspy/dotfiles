@@ -98,7 +98,16 @@
   "env": {
     "TZ": "Asia/Tokyo",
     "MAX_THINKING_TOKENS": "31999",
-    "DISABLE_AUTOUPDATER": "1"
+    "DISABLE_AUTOUPDATER": true,
+    "CLAUDE_CODE_AUTO_CONNECT_IDE": false,
+    "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": true,
+    "CLAUDE_CODE_IDE_SKIP_VALID_CHECK": true,
+    "CLAUDE_CODE_ENABLE_TELEMETRY": false,
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": true,
+    "DISABLE_ERROR_REPORTING": true,
+    "DISABLE_TELEMETRY": true,
+    "DISABLE_AUTOUPDATER": true,
+    "DISABLE_MICROCOMPACT": true
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
