@@ -99,6 +99,12 @@ if ! check_circular_link "$HOME/.codex/config.toml"; then
     rm -f "$HOME/.codex/config.toml"
 fi
 ln -snfv "$DOT_DIRECTORY/.codex/config.toml" "$HOME/.codex/config.toml"
+if ! check_circular_link "$HOME/.codex/notify_macos.sh"; then
+    echo "  -> 削除: $HOME/.codex/notify_macos.sh"
+    rm -f "$HOME/.codex/notify_macos.sh"
+fi
+ln -snfv "$DOT_DIRECTORY/.codex/notify_macos.sh" "$HOME/.codex/notify_macos.sh"
+chmod +x "$HOME/.codex/notify_macos.sh"
 
 # --- 追加で必要なら ---------------------------------------------------------
 # GOPATH を使う場合だけ有効化（Go 1.21 以降は通常不要）
