@@ -1,3 +1,4 @@
 sandbox_mode = "danger-full-access"
+approval_policy = "never"
 model_reasoning_effort = "high"
 notify = ["bash", "/Users/chaspy/.codex/notify_macos.sh"]
