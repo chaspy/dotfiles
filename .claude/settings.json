@@ -1,10 +1,18 @@
 {
-  "statusLine": {
-    "type": "command",
-    "command": "BR=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '-'); MODEL=$(echo \"${CLAUDE_MODEL:-sonnet-4}\" | sed 's/claude-//'); printf '📁 %s 🌿 %s 🤖 %s 🔢%s' \"${PWD##*/}\" \"${BR}\" \"${MODEL}\" \"$TOKENS\""
+  "env": {
+    "TZ": "Asia/Tokyo",
+    "MAX_THINKING_TOKENS": "31999",
+    "DISABLE_AUTOUPDATER": "true",
+    "CLAUDE_CODE_AUTO_CONNECT_IDE": "false",
+    "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "true",
+    "CLAUDE_CODE_IDE_SKIP_VALID_CHECK": "true",
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "false",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "true",
+    "DISABLE_ERROR_REPORTING": "true",
+    "DISABLE_TELEMETRY": "true",
+    "DISABLE_MICROCOMPACT": "true"
   },
   "permissions": {
-    "defaultMode": "acceptEdits",
     "allow": [
       "Bash",
       "Read",
@@ -92,22 +100,10 @@
       "Bash(apt-get remove --purge :*)",
       "Bash(yum remove -y :*)",
       "Bash(pacman -Rdd :*)"
-    ]
+    ],
+    "defaultMode": "acceptEdits"
   },
-  "env": {
-    "TZ": "Asia/Tokyo",
-    "MAX_THINKING_TOKENS": "31999",
-    "DISABLE_AUTOUPDATER": true,
-    "CLAUDE_CODE_AUTO_CONNECT_IDE": false,
-    "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": true,
-    "CLAUDE_CODE_IDE_SKIP_VALID_CHECK": true,
-    "CLAUDE_CODE_ENABLE_TELEMETRY": false,
-    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": true,
-    "DISABLE_ERROR_REPORTING": true,
-    "DISABLE_TELEMETRY": true,
-    "DISABLE_AUTOUPDATER": true,
-    "DISABLE_MICROCOMPACT": true
-  },
+  "model": "opus",
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "serena"
@@ -138,11 +134,15 @@
         "matcher": "Bash",
         "hooks": [
           {
-            "type": "command", 
+            "type": "command",
             "command": "echo 'コマンド実行前チェック'"
           }
         ]
       }
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "BR=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '-'); MODEL=$(jq -r '.model // \"sonnet-4\"' ~/.claude/settings.json 2>/dev/null || echo 'opus'); printf '📁 %s 🌿 %s 🤖 %s 🔢%s' \"${PWD##*/}\" \"${BR}\" \"${MODEL}\" \"$TOKENS\""
   }
 }

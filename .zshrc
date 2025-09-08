@@ -423,3 +423,6 @@ if [ -f '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-clou
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-cloud-sdk/completion.zsh.inc'; fi
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
