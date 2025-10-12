@@ -4,11 +4,17 @@ Review the specified GitHub pull request and provide actionable feedback while f
 
 ## Inputs
 
-- Argument parsing rules:
-  1. If `$1` includes a slash (e.g. `owner/repo`), treat it as `TARGET_REPO`, then set `PR_NUMBER=$2` and optional `USER_DIRECTIVES=$3..$9`.
-  2. Otherwise treat `$1` as the PR number, derive `TARGET_REPO` via  
-     `gh repo view --json nameWithOwner -q .nameWithOwner`, and take `USER_DIRECTIVES=$2..$9`.
-- Validate both `TARGET_REPO` and `PR_NUMBER`. If either cannot be resolved, immediately ask the user for clarification instead of guessing.
+- Argument parsing rules (in order):
+  1. Resolve `TARGET_REPO`:
+     - If `$1` includes a slash (e.g. `owner/repo`), consume it as the repo slug.
+     - Otherwise run `gh repo view --json nameWithOwner -q .nameWithOwner` to identify the current repository.
+  2. Resolve `PR_NUMBER`:
+     - If the next token is numeric, consume it as the PR number.
+     - If no explicit PR number is supplied, fetch it automatically with  
+       `gh pr view --json number -q .number 2>/dev/null` and fall back to  
+       `gh pr status --json currentBranch -q '.currentBranch.pullRequest.number'` when needed.
+  3. Any remaining tokens (`$ARGUMENTS`) become `USER_DIRECTIVES`.
+- Validate that both `TARGET_REPO` and `PR_NUMBER` are set. If detection fails at any stage, stop and ask the user for clarification.
 - `USER_DIRECTIVES` capture extra guidance. Merge them with the default rubric and confirm in the report how they were honoured.
 
 ## Preparation
@@ -18,10 +24,11 @@ Review the specified GitHub pull request and provide actionable feedback while f
    - `gh pr view $PR_NUMBER --repo $TARGET_REPO --json title,author,baseRefName,headRefName,url,body,files,commits,reviews`
    - Capture the PR title, author, branch names, URL, description, commit summary, and existing reviews.
 3. Download the latest changes: `gh pr checkout $PR_NUMBER --repo $TARGET_REPO`.
-4. Gather change context:
+4. Re-run the PR number discovery step after checkout if the branch changed to ensure you are reviewing the correct PR.
+5. Gather change context:
    - `gh pr diff $PR_NUMBER --repo $TARGET_REPO` (or limit to key files with `--filename` if the diff is large).
    - `git status -sb` to see any additional workspace context.
-5. Verify CI state: `gh pr checks $PR_NUMBER --repo $TARGET_REPO --watch --fail-fast=false`. Call out failing or pending checks explicitly.
+6. Verify CI state: `gh pr checks $PR_NUMBER --repo $TARGET_REPO --watch --fail-fast=false`. Call out failing or pending checks explicitly.
 
 ## Mandatory Review Guardrails
 

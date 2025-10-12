@@ -14,8 +14,8 @@ Codex CLI のカスタムプロンプト仕様は [Prompts ドキュメント](h
 
 ## 追加したコマンド
 
-- `/review [owner/repo] <pr-number> [extra instructions...]`
-  - リポジトリ省略時はカレントリポジトリ (`gh repo view` から取得) を自動利用。
+- `/review [owner/repo] [pr-number] [extra instructions...]`
+  - 引数なしでも使用可能。カレントリポジトリと現在のブランチが紐づく PR を自動検出（`gh pr view` / `gh pr status`）。
   - 目的達成／AI チート検知／CI 成果確認など、レビューチェックリストを強制する。
   - 追加のレビューポリシーは 3 番目以降の引数（`$3..$9`）を結合して利用する。
 - `/revierw …`
