@@ -1,0 +1,1 @@
+../../.claude/commands/renovate-safety.md

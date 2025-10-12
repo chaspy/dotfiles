@@ -105,6 +105,15 @@ if ! check_circular_link "$HOME/.codex/notify_macos.sh"; then
 fi
 ln -snfv "$DOT_DIRECTORY/.codex/notify_macos.sh" "$HOME/.codex/notify_macos.sh"
 chmod +x "$HOME/.codex/notify_macos.sh"
+if [ -e "$HOME/.codex/prompts" ] && [ ! -L "$HOME/.codex/prompts" ]; then
+    echo "⚠️  ~/.codex/prompts は既存のファイル/ディレクトリのためスキップします"
+else
+    if ! check_circular_link "$HOME/.codex/prompts"; then
+        echo "  -> 削除: $HOME/.codex/prompts"
+        rm -f "$HOME/.codex/prompts"
+    fi
+    ln -snfv "$DOT_DIRECTORY/.codex/prompts" "$HOME/.codex/prompts"
+fi
 
 # --- 追加で必要なら ---------------------------------------------------------
 # GOPATH を使う場合だけ有効化（Go 1.21 以降は通常不要）

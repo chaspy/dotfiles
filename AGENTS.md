@@ -36,3 +36,15 @@
 - macOS-specific paths are present; add guards if extending to Linux/WSL.
 - Never commit tokens or local secrets; add them to ignored, machine-local locations.
 
+---
+
+## Codex CLI グローバル指示
+
+Codex CLI がこのリポジトリで作業するときは、以下を必ず守ってください。
+
+1. **回答は常に日本語で行うこと。**  
+   - 技術用語など必要な部分のみ英語を併記して構いませんが、全体の文章は日本語でまとめてください。
+2. 既に `.codex/prompts/` や `.claude/commands/` に用意したスラッシュコマンドを活用し、重複する説明は避けること。
+3. 判断に迷った場合はユーザへ確認を求め、独断で決定しないこと。
+
+このファイルを更新したら Codex セッションを再起動して反映させてください。
