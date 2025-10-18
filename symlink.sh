@@ -105,15 +105,22 @@ if ! check_circular_link "$HOME/.codex/notify_macos.sh"; then
 fi
 ln -snfv "$DOT_DIRECTORY/.codex/notify_macos.sh" "$HOME/.codex/notify_macos.sh"
 chmod +x "$HOME/.codex/notify_macos.sh"
-if [ -e "$HOME/.codex/prompts" ] && [ ! -L "$HOME/.codex/prompts" ]; then
-    echo "⚠️  ~/.codex/prompts は既存のファイル/ディレクトリのためスキップします"
-else
-    if ! check_circular_link "$HOME/.codex/prompts"; then
-        echo "  -> 削除: $HOME/.codex/prompts"
-        rm -f "$HOME/.codex/prompts"
-    fi
-    ln -snfv "$DOT_DIRECTORY/.codex/prompts" "$HOME/.codex/prompts"
+# ~/.codex/prompts はシンボリックリンクだと読み込まれないためフルコピーする
+PROMPTS_SRC="$DOT_DIRECTORY/.codex/prompts"
+PROMPTS_DEST="$HOME/.codex/prompts"
+if [ -L "$PROMPTS_DEST" ]; then
+    echo "  -> シンボリックリンクを削除: $PROMPTS_DEST"
+    rm -f "$PROMPTS_DEST"
 fi
+if [ -d "$PROMPTS_DEST" ]; then
+    echo "  -> 既存のディレクトリを削除: $PROMPTS_DEST"
+    rm -rf "$PROMPTS_DEST"
+elif [ -f "$PROMPTS_DEST" ]; then
+    echo "  -> 既存のファイルを削除: $PROMPTS_DEST"
+    rm -f "$PROMPTS_DEST"
+fi
+mkdir -p "$PROMPTS_DEST"
+rsync -a --copy-links "$PROMPTS_SRC"/ "$PROMPTS_DEST"/
 
 # --- 追加で必要なら ---------------------------------------------------------
 # GOPATH を使う場合だけ有効化（Go 1.21 以降は通常不要）
