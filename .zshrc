@@ -14,6 +14,33 @@ fpath=(${fpath:#/usr/local/share/zsh/site-functions})
 autoload -Uz compinit
 compinit -i
 
+# uv run で第1引数のファイル補完を優先させる
+autoload -Uz add-zsh-hook
+typeset -gi __uv_completion_patched=0
+__uv_completion_patch() {
+  (( __uv_completion_patched )) && return
+  autoload -Uz _uv 2>/dev/null || return
+  (( $+functions[_uv] )) || return
+  functions -c _uv _uv_default 2>/dev/null || return
+  _uv() {
+    if [[ -n ${ZSH_UV_DEBUG:-} ]]; then
+      {
+        print -- "---"
+        print -- "words: ${(q)words}"
+        print -- "CURRENT: $CURRENT"
+        print -- "BUFFER: ${BUFFER:-}"
+      } >> /tmp/uv_completion_debug.log
+    fi
+    if [[ ${words[2]:-} == run && CURRENT -eq 3 ]]; then
+      _files && return 0
+    fi
+    _uv_default "$@"
+  }
+  __uv_completion_patched=1
+}
+add-zsh-hook precmd __uv_completion_patch
+__uv_completion_patch
+
 # alias
 
 alias wb='workbloom'
@@ -425,4 +452,3 @@ if [ -f '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-clou
 if [ -f '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-cloud-sdk/completion.zsh.inc'; fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
