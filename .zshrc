@@ -90,6 +90,26 @@ alias kb='kustomize build'
 
 alias python='python3'
 
+if command -v codex >/dev/null 2>&1; then
+  if codex exec --help 2>/dev/null | grep -q -- '--agent'; then
+    export CODEX_SUPPORTS_AGENT_FLAG=1
+  else
+    export CODEX_SUPPORTS_AGENT_FLAG=0
+  fi
+fi
+
+codex() {
+  if [[ $# -eq 0 ]]; then
+    if [[ ${CODEX_SUPPORTS_AGENT_FLAG:-0} -eq 1 ]]; then
+      command codex exec --agent ci-status
+    else
+      command codex "/ci-status"
+    fi
+  else
+    command codex "$@"
+  fi
+}
+
 kc() {
   test "$1" = "-" && {
    kubectx -

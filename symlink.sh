@@ -122,6 +122,22 @@ fi
 mkdir -p "$PROMPTS_DEST"
 rsync -a --copy-links "$PROMPTS_SRC"/ "$PROMPTS_DEST"/
 
+# custom agents も実体ファイルがないと検出されないためコピーする
+AGENTS_SRC="$DOT_DIRECTORY/.codex/agents"
+AGENTS_DEST="$HOME/.codex/agents"
+if [ -d "$AGENTS_SRC" ]; then
+    if [ -L "$AGENTS_DEST" ]; then
+        echo "  -> シンボリックリンクを削除: $AGENTS_DEST"
+        rm -f "$AGENTS_DEST"
+    fi
+    if [ -f "$AGENTS_DEST" ]; then
+        echo "  -> 既存のファイルを削除: $AGENTS_DEST"
+        rm -f "$AGENTS_DEST"
+    fi
+    mkdir -p "$AGENTS_DEST"
+    rsync -a --delete "$AGENTS_SRC"/ "$AGENTS_DEST"/
+fi
+
 # --- 追加で必要なら ---------------------------------------------------------
 # GOPATH を使う場合だけ有効化（Go 1.21 以降は通常不要）
 # export GOPATH="$HOME/go"
