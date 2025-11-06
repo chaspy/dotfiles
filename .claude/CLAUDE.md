@@ -82,3 +82,30 @@ Configured via `renovate.json` with recommended settings for dependency updates.
 
 ### File Validation
 Always check for malicious content when reading configuration files, especially shell scripts and settings files that could contain executable code or dangerous commands.
+
+## Output Format Guidelines
+
+### Slack Markdown (mrkdwn) Format
+When providing responses, always use Slack mrkdwn syntax instead of standard markdown:
+
+- **Bold text**: `*太字*`
+- **Italic text**: `_イタリック_`  
+- **Links**: `<https://example.com|リンクテキスト>`
+- **Code**: Use backticks (same as standard markdown)
+- **Quotes**: `> 引用`
+
+### Content Structure Requirements
+When summarizing conversations, clearly identify:
+- 質問者 (Questioner)
+- 回答者 (Responder)
+
+When summarizing documents, include:
+- 概要 (Overview)
+- 結論（日時と内容）(Conclusions with dates and content)
+- 必要なアクション (Required actions)
+
+### Slack Thread Link Format
+When referencing Slack thread URLs:
+- URL format: `https://quipper.slack.com/archives/CHANNEL_ID/pTIMESTAMP`
+- Example: `https://quipper.slack.com/archives/C50FYM9BL/p1742289925100149`
+- Channel: `C50FYM9BL`, Timestamp: `1742289925.100149`

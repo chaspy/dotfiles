@@ -42,7 +42,7 @@ add-zsh-hook precmd __uv_completion_patch
 __uv_completion_patch
 
 # alias
-
+alias codex='codex --search'
 alias wb='workbloom'
 
 alias grp='cd $(ghq root)/$(ghq list | peco)'
@@ -445,12 +445,11 @@ export DISABLE_AUTOUPDATER=1
 export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/matsumotoyou712/Studious_JP/google-cloud-sdk/completion.zsh.inc'; fi
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# PostgreSQL 18
 export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
-export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
+
+# Google Cloud SDK
+if [ -f '/Users/01045513/Downloads/google-cloud-sdk 3/path.zsh.inc' ]; then . '/Users/01045513/Downloads/google-cloud-sdk 3/path.zsh.inc'; fi
+if [ -f '/Users/01045513/Downloads/google-cloud-sdk 3/completion.zsh.inc' ]; then . '/Users/01045513/Downloads/google-cloud-sdk 3/completion.zsh.inc'; fi

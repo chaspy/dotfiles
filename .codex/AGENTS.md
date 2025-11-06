@@ -1,3 +1,6 @@
-- Answer in Japanese.
-- Always provide evidence through an internet search. Do not answer based on guesswork.
-- When asked for a github URL, use the gh command.
+## Codex エージェント方針（このリポジトリ）
+
+- 回答は常に日本語で行うこと（説明・要約・指摘）。
+- コマンドやコード、ログは英語原文のままでよい。
+- 可能な限り根拠を示すこと（必要に応じて `gh` や `git` の結果）。
+- GitHub 関連は極力 `gh` コマンドを用いること（URL提示時も可）。

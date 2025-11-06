@@ -1,5 +1,23 @@
 sandbox_mode = "danger-full-access"
+network_access = "enabled"
 approval_policy = "never"
-model_reasoning_effort = "high"
-notify = ["bash", "/Users/chaspy/.codex/notify_macos.sh"]
+notify = ["bash", "~/.codex/notify_macos.sh"]
 model = "gpt-5-codex"
+model_reasoning_effort = "high"
+
+[projects."/Users/01045513/go/src/github.com/chaspy/dotfiles"]
+trust_level = "trusted"
+[projects."/Users/01045513/go/src/github.com/quipper/saprus"]
+trust_level = "trusted"
+
+[projects."/Users/01045513/go/src/github.com/chaspy/outlook-agent"]
+trust_level = "trusted"
+
+[projects."/Users/01045513/go/src/github.com/chaspy/sakumon-poc"]
+trust_level = "trusted"
+
+[projects."/Users/01045513/go/src/github.com/quipper/testmaker-poc"]
+trust_level = "trusted"
+
+[projects."/Users/01045513/go/src/github.com/chaspy/kenshu-matcher"]
+trust_level = "trusted"

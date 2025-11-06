@@ -103,7 +103,6 @@
     ],
     "defaultMode": "acceptEdits"
   },
-  "model": "opus",
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "serena"
