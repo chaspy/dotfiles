@@ -30,6 +30,7 @@
   - Summary of change, affected files, and why.
   - Manual verification steps and example outputs (e.g., `ls -l` of new links).
   - Screenshots optional for editor/UI changes.
+  - PR description text must be written in Japanese (英語は必要に応じて併記可)。
 
 ## Security & Configuration Tips
 - Review scripts before running; they modify paths under `$HOME` but are designed to be idempotent.
