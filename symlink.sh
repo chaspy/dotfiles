@@ -105,6 +105,16 @@ if ! check_circular_link "$HOME/.codex/notify_macos.sh"; then
 fi
 ln -snfv "$DOT_DIRECTORY/.codex/notify_macos.sh" "$HOME/.codex/notify_macos.sh"
 chmod +x "$HOME/.codex/notify_macos.sh"
+# AGENTS.md はグローバル指示として実体コピーを置く
+CODEX_AGENT_SRC="$DOT_DIRECTORY/AGENTS.md"
+CODEX_AGENT_DEST="$HOME/.codex/AGENTS.md"
+if [ -f "$CODEX_AGENT_SRC" ]; then
+    if [ -L "$CODEX_AGENT_DEST" ]; then
+        echo "  -> シンボリックリンクを削除: $CODEX_AGENT_DEST"
+        rm -f "$CODEX_AGENT_DEST"
+    fi
+    cp "$CODEX_AGENT_SRC" "$CODEX_AGENT_DEST"
+fi
 # ~/.codex/prompts はシンボリックリンクだと読み込まれないためフルコピーする
 PROMPTS_SRC="$DOT_DIRECTORY/.codex/prompts"
 PROMPTS_DEST="$HOME/.codex/prompts"
