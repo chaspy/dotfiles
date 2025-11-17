@@ -1,6 +1,6 @@
 # Codex CLI カスタムプロンプト
 
-このディレクトリは Codex CLI のスラッシュメニュー用カスタムプロンプト (`~/.codex/prompts/*.md`) を管理します。Claude 用の `.claude/commands` と同じ内容をシンボリックリンクで共有しているため、`./symlink.sh` を実行すると Codex でも同じスラッシュコマンドが利用できます。
+このディレクトリは Codex CLI のスラッシュメニュー用カスタムプロンプト (`~/.codex/prompts/*.md`) を管理します。`./symlink.sh` を実行すると、Codex CLI がシンボリックリンクを読み込まない制約を回避するため、`.claude/commands` の内容を実ファイルとして `~/.codex/prompts/` にコピーします（毎回上書きされるため最新状態が反映されます）。
 
 ## 仕様メモ
 
@@ -14,9 +14,9 @@ Codex CLI のカスタムプロンプト仕様は [Prompts ドキュメント](h
 
 ## 追加したコマンド
 
-- `/review [owner/repo] [pr-number] [extra instructions...]`
+- `/pr-review [owner/repo] [pr-number] [extra instructions...]`
   - 引数なしでも使用可能。カレントリポジトリと現在のブランチが紐づく PR を自動検出（`gh pr view` / `gh pr status`）。
   - 目的達成／AI チート検知／CI 成果確認など、レビューチェックリストを強制する。
   - 追加のレビューポリシーは 3 番目以降の引数（`$3..$9`）を結合して利用する。
-- `/pr-review …`
-  - `/review` のエイリアス（スペルミス修正版）。
+- `/revierw …`
+  - `/pr-review` のエイリアス（同じ挙動）。
