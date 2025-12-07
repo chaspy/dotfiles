@@ -132,6 +132,22 @@ fi
 mkdir -p "$PROMPTS_DEST"
 rsync -a --copy-links "$PROMPTS_SRC"/ "$PROMPTS_DEST"/
 
+# Codex skills も実体ファイルが必須なのでコピー
+SKILLS_SRC="$DOT_DIRECTORY/.codex/skills"
+SKILLS_DEST="$HOME/.codex/skills"
+if [ -d "$SKILLS_SRC" ]; then
+    if [ -L "$SKILLS_DEST" ]; then
+        echo "  -> シンボリックリンクを削除: $SKILLS_DEST"
+        rm -f "$SKILLS_DEST"
+    fi
+    if [ -f "$SKILLS_DEST" ]; then
+        echo "  -> 既存のファイルを削除: $SKILLS_DEST"
+        rm -f "$SKILLS_DEST"
+    fi
+    mkdir -p "$SKILLS_DEST"
+    rsync -a --delete "$SKILLS_SRC"/ "$SKILLS_DEST"/
+fi
+
 # custom agents も実体ファイルがないと検出されないためコピーする
 AGENTS_SRC="$DOT_DIRECTORY/.codex/agents"
 AGENTS_DEST="$HOME/.codex/agents"
