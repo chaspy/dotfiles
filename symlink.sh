@@ -79,6 +79,11 @@ VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
 mkdir -p "$VSCODE_USER_DIR"
 ln -snfv "$DOT_DIRECTORY/settings.json" "$VSCODE_USER_DIR/settings.json"
 
+# Ghostty
+GHOSTTY_DIR="$HOME/Library/Application Support/com.mitchellh.ghostty"
+mkdir -p "$GHOSTTY_DIR"
+ln -snfv "$DOT_DIRECTORY/ghostty/config" "$GHOSTTY_DIR/config"
+
 # Claude
 mkdir -p "$HOME/.claude"
 # 既存のシンボリンクの循環参照をチェック
