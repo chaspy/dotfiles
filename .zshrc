@@ -450,6 +450,15 @@ export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
 if [ -f '/Users/01045513/Downloads/google-cloud-sdk 3/path.zsh.inc' ]; then . '/Users/01045513/Downloads/google-cloud-sdk 3/path.zsh.inc'; fi
 if [ -f '/Users/01045513/Downloads/google-cloud-sdk 3/completion.zsh.inc' ]; then . '/Users/01045513/Downloads/google-cloud-sdk 3/completion.zsh.inc'; fi
 
+# Added by Antigravity
+export PATH="/Users/chaspy/.antigravity/antigravity/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/chaspy/go/src/github.com/studiuos-jp/Studious_JP/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/studiuos-jp/Studious_JP/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/chaspy/go/src/github.com/studiuos-jp/Studious_JP/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chaspy/go/src/github.com/studiuos-jp/Studious_JP/google-cloud-sdk/completion.zsh.inc'; fi
+
 # ghostty
 if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
   source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
