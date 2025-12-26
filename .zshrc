@@ -49,10 +49,8 @@ alias grp='cd $(ghq root)/$(ghq list | peco)'
 alias pcd='cd $(dirname $(find . | peco))'
 alias gop='hub browse $(ghq list | grep github.com | cut -f 2,3 -d / | peco)'
 alias gho='gh repo view --web'
-alias diff='diff -u'
 alias pbc='pbcopy'
 alias ex='exit'
-alias vdu='vagrant destroy -f;vagrant up'
 alias sed='gsed'
 alias tf='terraform'
 alias gsort="sort -V"
@@ -136,18 +134,16 @@ export PATH=/usr/local/bin:$PATH
 export PATH="/opt/homebrew/opt/go@1.20/bin:$PATH"
 
 # rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-export PATH=$"$PATH:$HOME/.rbenv/bin"
-eval "$(rbenv init -)"
+if which rbenv > /dev/null; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
 
 # nodenv
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init - zsh)"
 
 # GO
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
 # aqua
 export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 export AQUA_GLOBAL_CONFIG="${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml"
@@ -453,3 +449,8 @@ export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
 # Google Cloud SDK
 if [ -f '/Users/01045513/Downloads/google-cloud-sdk 3/path.zsh.inc' ]; then . '/Users/01045513/Downloads/google-cloud-sdk 3/path.zsh.inc'; fi
 if [ -f '/Users/01045513/Downloads/google-cloud-sdk 3/completion.zsh.inc' ]; then . '/Users/01045513/Downloads/google-cloud-sdk 3/completion.zsh.inc'; fi
+
+# ghostty
+if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
+  source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
+fi
