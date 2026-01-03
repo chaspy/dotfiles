@@ -22,7 +22,7 @@ model: gpt-5-codex
 2. `gh pr view $PR_NUMBER --repo $TARGET_REPO --json title,author,baseRefName,headRefName,url,body,files,commits,reviews` でメタデータを取得。  
 3. `gh pr checkout $PR_NUMBER --repo $TARGET_REPO` で最新の変更を取得し、再度 PR 番号を確認する。  
 4. `gh pr diff` や `git status -sb` を使って差分を把握する。  
-5. `gh pr checks $PR_NUMBER --repo $TARGET_REPO --watch --fail-fast=false` で CI の状態を明示する。
+5. `gh pr checks $PR_NUMBER --repo $TARGET_REPO --watch` で CI の状態を明示する。
 
 # ガードレール
 - PR の目的と diff が一致しているか検証する。  

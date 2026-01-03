@@ -24,7 +24,7 @@ PR_NUMBER=$(gh pr view --json number -q .number 2>/dev/null || gh pr status --js
 - どちらか取得できない場合はユーザーへ確認。
 
 ### 2. CI 完了を監視
-- `gh pr checks "$PR_NUMBER" --repo "$TARGET_REPO" --watch --fail-fast=false`
+- `gh pr checks "$PR_NUMBER" --repo "$TARGET_REPO" --watch`
 - 実行中に失敗が出たら `/ci-status` の手順でログを精査し、修正 or 再実行。  
 - 再実行後も同じコマンドで完了まで待機する。
 

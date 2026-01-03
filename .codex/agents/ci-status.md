@@ -12,7 +12,7 @@ model: gpt-5-codex
    - `$TARGET_REPO` と `$PR_NUMBER` が明示されていなければ `gh repo view --json nameWithOwner -q .nameWithOwner` と `gh pr view --json number -q .number` で検出する。  
    - ブランチが変わった場合は再確認する。
 2. CI ステータス取得  
-   - `gh pr checks $PR_NUMBER --repo $TARGET_REPO --watch --fail-fast=false` を実行し、各ジョブの結果を収集する。  
+   - `gh pr checks $PR_NUMBER --repo $TARGET_REPO --watch` を実行し、各ジョブの結果を収集する。  
    - 実行中のジョブがあれば待機 or 途中経過を示す。
 3. 失敗ジョブの深掘り  
    - 失敗したジョブは `gh pr checks` や CI のログ URL からエラーログを取得して要因を抽出する。  
