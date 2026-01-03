@@ -463,3 +463,21 @@ if [ -f '/Users/chaspy/go/src/github.com/studiuos-jp/Studious_JP/google-cloud-sd
 if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
   source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
 fi
+
+# ssh
+alias sshms='ssh -i /Users/chaspy/.ssh/id_ed25519 chaspy@100.75.66.41'
+
+# workbloom
+
+workbloom() {
+  if [[ "$1" == "a" ]]; then
+    shift
+    local session
+    session=$(
+      tmux ls -F '#S' 2>/dev/null | rg '^wb-' | fzf --prompt='workbloom tmux> '
+    ) || return 0
+    tmux attach -t "$session"
+  else
+    command workbloom "$@"
+  fi
+}
