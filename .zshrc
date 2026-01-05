@@ -474,9 +474,13 @@ workbloom() {
     shift
     local session
     session=$(
-      tmux ls -F '#S' 2>/dev/null | rg '^wb-' | fzf --prompt='workbloom tmux> '
+      tmux ls -F '#S' 2>/dev/null | rg '^wb-' | fzf --prompt='workbloom tmux
+  > '
     ) || return 0
     tmux attach -t "$session"
+  elif [[ "$1" == "s" ]]; then
+    shift
+    command workbloom setup "$@" --shell
   else
     command workbloom "$@"
   fi

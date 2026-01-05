@@ -54,11 +54,16 @@ for f in "$DOT_DIRECTORY"/.??*; do
 
   # 同期しないファイル／ディレクトリ
   case "$base" in
-    .git|.toml|.claude|.codex) continue ;;
+    .git|.toml|.claude|.codex|.tmux.conf) continue ;;
   esac
 
   ln -snfv "$DOT_DIRECTORY/$base" "$HOME/$base"
 done
+
+# tmux
+if [ -f "$DOT_DIRECTORY/.tmux.conf" ]; then
+  ln -snfv "$DOT_DIRECTORY/.tmux.conf" "$HOME/.tmux.conf"
+fi
 
 # --- 個別設定ファイル -------------------------------------------------------
 # gitignore（system）
