@@ -123,6 +123,108 @@ alias gcd='git checkout develop && git pull origin develop'
 alias cdt='cd "$(git rev-parse --show-toplevel)"'
 alias gcf='git commit --amend --no-edit'
 
+# git worktree selector (peco/fzf)
+git-worktree-cd() {
+  setopt localoptions pipefail
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "git リポジトリ内で実行してください" >&2
+    return 1
+  fi
+
+  local selector_cmd selection target
+  if command -v peco >/dev/null 2>&1; then
+    selector_cmd=(peco --prompt 'worktree> ')
+  elif command -v fzf >/dev/null 2>&1; then
+    selector_cmd=(fzf --prompt 'worktree> ')
+  else
+    echo "peco または fzf が必要です" >&2
+    return 1
+  fi
+
+  local -a _gwt_entries=()
+  local -a _gwt_paths=()
+  local entry_label entry_path
+  while IFS=$'\t' read -r entry_label entry_path; do
+    [[ -z "$entry_label" ]] && continue
+    _gwt_entries+=("$entry_label")
+    _gwt_paths+=("$entry_path")
+  done < <(
+    git worktree list --porcelain | awk '
+      function shorten(path,   n, parts, start, i, out) {
+        n = split(path, parts, "/")
+        start = n - 2
+        if (start < 1) {
+          start = 1
+        }
+        out = ""
+        for (i = start; i <= n; i++) {
+          if (parts[i] == "") {
+            continue
+          }
+          if (out != "") {
+            out = out "/" parts[i]
+          } else {
+            out = parts[i]
+          }
+        }
+        return out
+      }
+      function flush_entry() {
+        if (worktree_path == "") {
+          return
+        }
+        short_path = shorten(worktree_path)
+        head_display = head
+        if (head_display == "") {
+          head_display = "--------"
+        } else {
+          head_display = substr(head_display, 1, 8)
+        }
+        branch_display = branch
+        if (branch_display == "" || branch_display == "(detached)") {
+          branch_display = (branch_display == "" ? "(detached)" : branch_display)
+        }
+        sub(/^refs\/heads\//, "", branch_display)
+        display = short_path " " head_display " [" branch_display "]"
+        printf "%s\t%s\n", display, worktree_path
+        worktree_path = ""
+        branch = ""
+        head = ""
+      }
+      /^worktree / { worktree_path = substr($0, 10); next }
+      /^branch / { branch = substr($0, 9); next }
+      /^HEAD / { head = substr($0, 6); next }
+      /^detached/ { branch = "(detached)"; next }
+      NF == 0 { flush_entry(); next }
+      END { flush_entry() }
+    '
+  )
+
+  if (( ${#_gwt_entries[@]} == 0 )); then
+    echo "worktree が見つかりません" >&2
+    return 1
+  fi
+
+  selection=$(printf '%s\n' "${_gwt_entries[@]}" | "${selector_cmd[@]}") || return 1
+
+  local target=""
+  local idx
+  for (( idx = 1; idx <= ${#_gwt_entries[@]}; idx++ )); do
+    if [[ "${_gwt_entries[idx]}" == "$selection" ]]; then
+      target="${_gwt_paths[idx]}"
+      break
+    fi
+  done
+
+  if [[ -z "$target" ]]; then
+    echo "選択結果を解決できませんでした" >&2
+    return 1
+  fi
+
+  builtin cd -- "$target"
+}
+alias gwt='git-worktree-cd'
+
 # brew
 export PATH=$PATH:/opt/homebrew/bin
 
