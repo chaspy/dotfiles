@@ -35,10 +35,12 @@ PR_NUMBER=$(gh pr view --json number -q .number 2>/dev/null || gh pr status --js
 4. 再度 Step 2 へ戻り、CI が緑になるまで繰り返す
 
 ### 4. get-sonar-feedback の実行
+- Sonar CI は完了まで約10分かかることがあるため、CI 完了後に待機する。
 ```bash
-get-sonar-feedback "$TARGET_REPO" "$PR_NUMBER"
+source .envrc && get-sonar-feedback pr
 ```
 - `.codex/prompts/sonar-feedback.md` のフローに従い、Critical/High を最優先で処理
+- 指摘が残る場合は修正→コミット/プッシュ→Step 2 に戻って CI 完了を待機し、再度この手順を実行する
 - 解決できない場合は理由と代替策を明記し、TODO を残してレビュアーに伝える
 
 ### 5. PR レビュー結果の整理
@@ -53,6 +55,7 @@ get-sonar-feedback "$TARGET_REPO" "$PR_NUMBER"
   - 追加で行ったテストや確認事項
   - レビュアーに見てほしい観点
 - 必要に応じて `gh pr comment` や `gh pr view --json url` を使い、URL とともに共有する
+- 最終報告前にコミット/プッシュが完了していることを必ず確認する
 
 ## リスクとメモ
 - CI 失敗を無視して次工程へ進まない
