@@ -1,3 +1,10 @@
+---
+name: sonar-feedback
+description: get-sonar-feedback コマンドを実行し、SonarQube のコード品質フィードバックを分析・改善計画を提案する
+disable-model-invocation: true
+argument-hint: "[オプション: 分析対象ブランチ]"
+---
+
 Execute get-sonar-feedback command and analyze the results
 1. Run get-sonar-feedback $ARGUMENTS
 2. Parse and summarize code quality issues

@@ -1,3 +1,10 @@
+---
+name: claude-code-review-response
+description: PR の Claude Code Action レビューコメントを取得・分析し、各コメントに対応して修正を実施する
+disable-model-invocation: true
+argument-hint: "[オプション: --priority high|medium|low, --review-id ID]"
+---
+
 # PRレビューコメント対応
 
 現在のブランチに該当するPRのClaude Code Actionからのレビューコメントを取得し、各コメントに対応します。

@@ -1,3 +1,10 @@
+---
+name: commit-push
+description: 現在の変更をコミットし、リモートリポジトリにプッシュする
+disable-model-invocation: true
+argument-hint: "[オプション: コミットメッセージ]"
+---
+
 # Commit & Push
 
 現在の変更をコミットし、リモートリポジトリにプッシュします。

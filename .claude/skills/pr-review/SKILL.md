@@ -1,3 +1,10 @@
+---
+name: pr-review
+description: GitHub Pull Request を詳細にレビューし、アクショナブルなフィードバックを日本語で提供する
+disable-model-invocation: true
+argument-hint: "[オプション: レビュー時の追加指示]"
+---
+
 # Pull Request Review
 
 Review the specified GitHub pull request in Japanese and provide actionable feedback while following the mandatory guardrails listed below.
@@ -6,7 +13,7 @@ Review the specified GitHub pull request in Japanese and provide actionable feed
 
 - 引数（`$ARGUMENTS`）はすべて `USER_DIRECTIVES` として扱い、レビュー時の追加指示にのみ使用する。
 - `TARGET_REPO` は常に `gh repo view --json nameWithOwner -q .nameWithOwner` でカレントリポジトリから自動取得する。
-- `PR_NUMBER` は `gh pr view --json number -q .number 2>/dev/null`、失敗時は  
+- `PR_NUMBER` は `gh pr view --json number -q .number 2>/dev/null`、失敗時は
   `gh pr status --json currentBranch -q '.currentBranch.pullRequest.number'` でカレントブランチに紐づく PR を推定する。
 - `TARGET_REPO` または `PR_NUMBER` を自動決定できなかった場合はユーザーに確認してから進める。
 - `USER_DIRECTIVES` はデフォルトのレビュー基準にマージし、どのように反映したか報告に含める。
@@ -29,9 +36,9 @@ Review the specified GitHub pull request in Japanese and provide actionable feed
 Always perform these checks in addition to any `USER_DIRECTIVES`:
 
 - Read the full code diff and confirm it aligns with the stated PR goal.
-- Validate that the implementation genuinely fulfils its purpose—no placeholder or “AI hallucinated” behaviour that only claims success. Be explicit if evidence is missing.
+- Validate that the implementation genuinely fulfils its purpose—no placeholder or "AI hallucinated" behaviour that only claims success. Be explicit if evidence is missing.
 - Ensure CI is green. If not, identify the failing jobs; do not assume success.
-- Confirm the technical decisions are sound given the project’s conventions and architecture.
+- Confirm the technical decisions are sound given the project's conventions and architecture.
 - When unsure about intent or acceptable trade-offs, pause and ask the user for guidance rather than guessing.
 
 ## Review Rubric
@@ -57,10 +64,10 @@ Apply these lenses (and include any `USER_DIRECTIVES`):
 
 Structure the response as:
 
-1. **Summary** – Brief overview of the PR’s intent and overall health.
+1. **Summary** – Brief overview of the PR's intent and overall health.
 2. **Blocking Issues** – Ordered list of defects that must be addressed. Reference files and approximate line numbers.
 3. **Suggestions** – Non-blocking improvements or polish.
 4. **Tests** – Tests verified or recommended.
-5. **Next Steps** – Clear guidance for the author (e.g., “address the blocking items and ping me for re-review”).
+5. **Next Steps** – Clear guidance for the author (e.g., "address the blocking items and ping me for re-review").
 
-When `USER_DIRECTIVES` are supplied, explicitly acknowledge how they were applied (e.g., “Focused on accessibility per request”). If the review cannot proceed because inputs were missing or commands failed, report the blocker and stop.
+When `USER_DIRECTIVES` are supplied, explicitly acknowledge how they were applied (e.g., "Focused on accessibility per request"). If the review cannot proceed because inputs were missing or commands failed, report the blocker and stop.

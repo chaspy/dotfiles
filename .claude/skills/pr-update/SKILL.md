@@ -1,3 +1,10 @@
+---
+name: pr-update
+description: 既存の Pull Request の description を最新のコード変更に基づいて更新する
+disable-model-invocation: true
+argument-hint: "[オプション: 更新時の追加説明]"
+---
+
 # Pull Request 更新
 
 既存のPull Requestのdescriptionを最新のコード変更に基づいて更新します。

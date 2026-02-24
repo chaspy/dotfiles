@@ -1,3 +1,9 @@
+---
+name: pr-url
+description: 現在のブランチの PR URL を取得して表示し、ブラウザで開く
+disable-model-invocation: true
+---
+
 # PR URL 取得と表示
 
 現在のブランチに関連付けられているPull RequestのURLを取得して表示し、ブラウザで開きます。

@@ -1,3 +1,10 @@
+---
+name: sonar-maintenance-feedback
+description: メンテナンスフェーズの包括的な SonarQube 分析を実行し、main ブランチの品質改善計画を策定する
+disable-model-invocation: true
+argument-hint: "[オプション: 分析詳細度レベル]"
+---
+
 Execute comprehensive SonarQube analysis for maintenance phase on main codebase using v0.2.0 features
 1. Ensure currently on main branch (or switch to main)
 2. Run `get-sonar-feedback metrics` to get overall health dashboard:
@@ -41,7 +48,7 @@ Execute comprehensive SonarQube analysis for maintenance phase on main codebase 
 # Step 1: 全体メトリクスで健康状態把握
 get-sonar-feedback metrics
 
-# Step 2: 詳細イシュー分析で具体的問題特定  
+# Step 2: 詳細イシュー分析で具体的問題特定
 get-sonar-feedback issues
 
 # Step 3: 特定ブランチでの比較分析（必要に応じて）

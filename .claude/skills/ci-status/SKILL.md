@@ -1,3 +1,10 @@
+---
+name: ci-status
+description: 現在の PR の CI ステータスを確認し、失敗している場合は原因を分析して修正案を提示する
+disable-model-invocation: true
+argument-hint: "[オプション: --wait (CI完了まで待機)]"
+---
+
 # CI ステータスチェック
 
 現在のPull RequestのCIステータスを確認し、失敗している場合は原因を分析して修正案を提示します。

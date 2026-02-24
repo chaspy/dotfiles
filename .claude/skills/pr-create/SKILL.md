@@ -1,3 +1,10 @@
+---
+name: pr-create
+description: 現在のブランチの変更を分析し、適切な Pull Request を作成する
+disable-model-invocation: true
+argument-hint: "[オプション: PR タイトルの追加説明]"
+---
+
 # Pull Request 作成
 
 現在のブランチの変更を分析し、適切なPull Requestを作成します。
