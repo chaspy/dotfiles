@@ -143,5 +143,6 @@
   "statusLine": {
     "type": "command",
     "command": "BR=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '-'); MODEL=$(jq -r '.model // \"sonnet-4\"' ~/.claude/settings.json 2>/dev/null || echo 'opus'); printf '📁 %s 🌿 %s 🤖 %s 🔢%s' \"${PWD##*/}\" \"${BR}\" \"${MODEL}\" \"$TOKENS\""
-  }
+  },
+  "skipDangerousModePermissionPrompt": true
 }
