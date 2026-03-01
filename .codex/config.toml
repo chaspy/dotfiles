@@ -3,7 +3,7 @@ network_access = "enabled"
 approval_policy = "never"
 notify = ["bash", "~/.codex/notify_macos.sh"]
 model = "gpt-5.3-codex"
-model_reasoning_effort = "high"
+model_reasoning_effort = "medium"
 hide_agent_reasoning = true  # 既定値は false
 personality = "pragmatic"
 
