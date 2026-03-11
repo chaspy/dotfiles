@@ -537,6 +537,10 @@ if which plenv > /dev/null; then eval "$(plenv init - zsh)"; fi
 export RENOVATE_SAFETY_LANGUAGE=ja
 
 # claude code
+# 削除済みの Bun preload を過去シェルから引き継いだ場合に無効化する
+case "${BUN_OPTIONS:-}" in
+  *"$HOME/.claude/bun-ipv4-preload.js"*) unset BUN_OPTIONS ;;
+esac
 export MAX_THINKING_TOKENS=31999
 export DISABLE_AUTOUPDATER=1
 
