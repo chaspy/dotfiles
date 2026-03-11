@@ -92,7 +92,7 @@ ln -snfv "$DOT_DIRECTORY/ghostty/config" "$GHOSTTY_DIR/config"
 # Claude
 mkdir -p "$HOME/.claude"
 # 既存のシンボリンクの循環参照をチェック
-for link in "$HOME/.claude/settings.json" "$HOME/.claude/CLAUDE.md" "$HOME/.claude/commands" "$HOME/.claude/skills" "$HOME/.claude/statusline.sh" "$HOME/.claude/bun-ipv4-preload.js"; do
+for link in "$HOME/.claude/settings.json" "$HOME/.claude/CLAUDE.md" "$HOME/.claude/commands" "$HOME/.claude/skills" "$HOME/.claude/statusline.sh"; do
     if ! check_circular_link "$link"; then
         echo "  -> 削除: $link"
         rm -f "$link"
@@ -102,7 +102,6 @@ ln -snfv "$DOT_DIRECTORY/.claude/settings.json"       "$HOME/.claude/settings.js
 ln -snfv "$DOT_DIRECTORY/.claude/commands"            "$HOME/.claude/commands"
 ln -snfv "$DOT_DIRECTORY/.claude/CLAUDE.md"           "$HOME/.claude/CLAUDE.md"
 ln -snfv "$DOT_DIRECTORY/.claude/statusline.sh"      "$HOME/.claude/statusline.sh"
-ln -snfv "$DOT_DIRECTORY/.claude/bun-ipv4-preload.js" "$HOME/.claude/bun-ipv4-preload.js"
 if [ -d "$DOT_DIRECTORY/.claude/skills" ]; then
     ln -snfv "$DOT_DIRECTORY/.claude/skills"           "$HOME/.claude/skills"
 fi
