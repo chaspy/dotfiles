@@ -21,17 +21,42 @@ function log(...args) {
   }
 }
 
-const lookupDNs = (hostname, opts, callback) => {
-  dns.resolve4(hostname, (err, addresses) => {
-    if (err) {
-      return callback(err);
-    }
-    const candidates = addresses.map((a) => {
-      return { address: a, family: 4 };
-    });
-    callback(null, candidates);
-  });
-};
+function normalizeLookupOptions(opts) {
+  if (typeof opts === "number") {
+    return { family: opts };
+  }
+  if (!opts || typeof opts !== "object") {
+    return {};
+  }
+  return opts;
+}
+
+// Use the OS resolver so VPN-provided DNS behavior is preserved.
+function lookupIPv4(hostname, opts, callback) {
+  const options = normalizeLookupOptions(opts);
+  dns.lookup(
+    hostname,
+    {
+      ...options,
+      family: 4,
+      all: Boolean(options.all),
+    },
+    (err, address, family) => {
+      if (err) {
+        return callback(err);
+      }
+      if (options.all) {
+        return callback(null, address);
+      }
+      return callback(null, address, family);
+    },
+  );
+}
+
+async function resolveIPv4(hostname) {
+  const result = await dnsPromises.lookup(hostname, { family: 4 });
+  return result.address;
+}
 
 // https.request を IPv4 強制に上書き
 // @ts-ignore
@@ -47,7 +72,7 @@ https.request = function (...args) {
   }
 
   if (optionsIndex !== -1) {
-    args[optionsIndex].lookup = lookupDNs;
+    args[optionsIndex].lookup = lookupIPv4;
     const host = args[optionsIndex].hostname || args[optionsIndex].host;
     if (host) {
       args[optionsIndex].headers = {
@@ -56,7 +81,7 @@ https.request = function (...args) {
       };
     }
   } else if (typeof args[0] === "string" || args[0] instanceof URL) {
-    args.splice(1, 0, { family: 4, lookup: lookupDNs });
+    args.splice(1, 0, { family: 4, lookup: lookupIPv4 });
   }
 
   log("Modified args for IPv4:", args);
@@ -80,14 +105,12 @@ globalThis.fetch = async (input, init) => {
         : new URL(input.url);
 
   try {
-    const addresses = await dnsPromises.resolve4(requestUrl.hostname);
-    if (addresses.length > 0) {
-      const ipv4 = addresses[0];
-      const fetchUrl = `${requestUrl.protocol}//${ipv4}${requestUrl.pathname}${requestUrl.search}`;
-      const headers = new Headers(init?.headers);
-      headers.set("Host", requestUrl.hostname);
-      return originalFetch(fetchUrl, { ...init, headers });
-    }
+    const ipv4 = await resolveIPv4(requestUrl.hostname);
+    const fetchUrl = new URL(requestUrl);
+    fetchUrl.hostname = ipv4;
+    const headers = new Headers(init?.headers);
+    headers.set("Host", requestUrl.host);
+    return originalFetch(fetchUrl, { ...init, headers });
   } catch (e) {
     log("IPv4 resolve failed, falling back:", e);
   }
