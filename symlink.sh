@@ -178,6 +178,13 @@ if [ -d "$AGENTS_SRC" ]; then
     rsync -a --delete "$AGENTS_SRC"/ "$AGENTS_DEST"/
 fi
 
+# bin scripts
+mkdir -p "$HOME/bin"
+for f in "$DOT_DIRECTORY"/bin/*; do
+  [ -f "$f" ] || continue
+  ln -snfv "$f" "$HOME/bin/$(basename "$f")"
+done
+
 # --- 追加で必要なら ---------------------------------------------------------
 # GOPATH を使う場合だけ有効化（Go 1.21 以降は通常不要）
 # export GOPATH="$HOME/go"
