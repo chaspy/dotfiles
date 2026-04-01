@@ -1,0 +1,164 @@
+#!/usr/bin/env zsh
+# claude-auth-url - Run claude auth login and extract a clean OAuth URL
+#
+# Termius / SSH / zellij 環境で OAuth URL がコピー時に壊れる問題を解決する。
+# script(1) で PTY 出力をキャプチャし、ANSI escape / box-drawing 文字を除去して
+# 安全な URL を表示・コピー・open する。
+#
+# Usage:
+#   claude-auth-url [OPTIONS]
+#
+# Options:
+#   --print          URL を stdout に表示（デフォルト）
+#   --copy           URL を pbcopy でクリップボードにコピー
+#   --open           URL をブラウザで開く
+#   --log-file FILE  script(1) のログを FILE に保存
+#   --logout-first   先に claude auth logout を実行
+#   --email EMAIL    claude auth login --email EMAIL
+#   --status         claude auth status を表示して終了
+#   -h, --help       ヘルプ表示
+
+set -euo pipefail
+
+readonly URLFILE="/tmp/claude-auth-url.txt"
+
+# ---------- defaults ----------
+DO_COPY=false
+DO_OPEN=false
+DO_PRINT=true
+LOGOUT_FIRST=false
+LOG_FILE=""
+EMAIL=""
+SHOW_STATUS=false
+
+# ---------- usage ----------
+usage() {
+  sed -n '2,/^$/s/^# \?//p' "$0"
+  exit 0
+}
+
+# ---------- parse args ----------
+while (( $# )); do
+  case "$1" in
+    --copy)         DO_COPY=true ;;
+    --open)         DO_OPEN=true ;;
+    --print)        DO_PRINT=true ;;
+    --log-file)     shift; LOG_FILE="$1" ;;
+    --logout-first) LOGOUT_FIRST=true ;;
+    --email)        shift; EMAIL="$1" ;;
+    --status)       SHOW_STATUS=true ;;
+    -h|--help)      usage ;;
+    *)              echo "Unknown option: $1" >&2; usage ;;
+  esac
+  shift
+done
+
+# ---------- status ----------
+if $SHOW_STATUS; then
+  claude auth status
+  exit $?
+fi
+
+# ---------- logout first ----------
+if $LOGOUT_FIRST; then
+  echo ">>> claude auth logout ..."
+  claude auth logout || true
+  echo ""
+fi
+
+# ---------- clean URL from raw output ----------
+extract_url() {
+  # 1. ANSI escape sequences を除去 (CSI / OSC)
+  # 2. box-drawing / 罫線文字を除去
+  # 3. OAuth URL を抽出
+  sed $'s/\x1b\\[[0-9;]*[A-Za-z]//g; s/\x1b\\][^\x07]*\x07//g; s/\x1b(B//g; s/\x1b\\[\\?[0-9;]*[A-Za-z]//g' \
+    | tr -d '\r' \
+    | sed 's/[─│┌┐└┘├┤┬┴┼╭╮╰╯║═╔╗╚╝╠╣╦╩╬▀▄█▌▐░▒▓●◆◇■□▲△▼▽]//g' \
+    | grep -oE 'https://[^ ]*oauth[^ ]*' \
+    | head -1 \
+    | tr -d '[:cntrl:]' \
+    | sed 's/[[:space:]]*$//'
+}
+
+# ---------- background URL watcher ----------
+watch_for_url() {
+  local logfile="$1"
+  local url=""
+  local attempts=0
+  local max_attempts=600  # 5 分 (0.5s * 600)
+
+  while [[ -z "$url" ]] && (( attempts < max_attempts )); do
+    sleep 0.5
+    (( attempts++ ))
+    url=$(extract_url < "$logfile" 2>/dev/null) || true
+  done
+
+  if [[ -z "$url" ]]; then
+    echo "" >&2
+    echo "ERROR: OAuth URL を検出できませんでした" >&2
+    echo "  ログ: $logfile" >&2
+    return 1
+  fi
+
+  # 結果をファイルに書き出し（別セッションから参照可能）
+  echo "$url" > "$URLFILE"
+
+  echo "" >&2
+  echo "========================================" >&2
+  echo " OAuth URL (clean)" >&2
+  echo "========================================" >&2
+
+  if $DO_PRINT; then
+    echo "$url"
+  fi
+
+  if $DO_COPY; then
+    echo -n "$url" | pbcopy
+    echo " (clipboard にコピー済み)" >&2
+  fi
+
+  if $DO_OPEN; then
+    open "$url"
+    echo " (ブラウザで開きました)" >&2
+  fi
+
+  echo "" >&2
+  echo "別セッションからも参照可: cat $URLFILE" >&2
+}
+
+# ---------- main ----------
+TMPLOG="${LOG_FILE:-$(mktemp /tmp/claude-auth-XXXXXX.log)}"
+KEEP_LOG=false
+[[ -n "$LOG_FILE" ]] && KEEP_LOG=true
+
+cleanup() {
+  if ! $KEEP_LOG; then
+    rm -f "$TMPLOG"
+  fi
+  # watcher が残っていれば停止
+  [[ -n "${WATCHER_PID:-}" ]] && kill "$WATCHER_PID" 2>/dev/null || true
+}
+trap cleanup EXIT
+
+# watcher をバックグラウンド起動
+watch_for_url "$TMPLOG" &
+WATCHER_PID=$!
+
+# claude auth login を PTY 付きで実行し出力をキャプチャ
+LOGIN_ARGS=()
+[[ -n "$EMAIL" ]] && LOGIN_ARGS+=(--email "$EMAIL")
+
+echo ">>> claude auth login ${LOGIN_ARGS[*]:-} ..."
+echo "    (URL は自動抽出されます)"
+echo ""
+
+# macOS script: script -q logfile command [args...]
+script -q "$TMPLOG" claude auth login "${LOGIN_ARGS[@]}"
+
+# login 完了後、watcher の結果を待つ
+wait "$WATCHER_PID" 2>/dev/null || true
+unset WATCHER_PID
+
+if $KEEP_LOG; then
+  echo "ログ保存: $TMPLOG" >&2
+fi
