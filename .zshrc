@@ -588,6 +588,12 @@ def main() -> int:
                 match = URL_RE.search(read_buffer)
                 if match:
                     copied_url = match.group(0)
+                    print(
+                        "\n[claude-login-phone] この URL を iPhone で開いてください:",
+                        file=sys.stderr,
+                        flush=True,
+                    )
+                    print(copied_url, file=sys.stderr, flush=True)
                     try:
                         subprocess.run(["pbcopy"], input=copied_url, text=True, check=True)
                         print(
