@@ -537,6 +537,97 @@ if which plenv > /dev/null; then eval "$(plenv init - zsh)"; fi
 export RENOVATE_SAFETY_LANGUAGE=ja
 
 # claude code
+# `claude auth login` の URL を拾ってクリップボードへコピーする
+claude-login-phone() {
+  python3 - "$@" <<'PY'
+import os
+import pty
+import re
+import select
+import subprocess
+import sys
+
+
+URL_RE = re.compile(r"https://[^\s)>\"]+")
+
+
+def main() -> int:
+    argv = ["claude", "auth", "login", *sys.argv[1:]]
+    copied_url = None
+    read_buffer = ""
+
+    pid, master_fd = pty.fork()
+    if pid == 0:
+        os.execvp(argv[0], argv)
+
+    stdin_fd = sys.stdin.fileno()
+    while True:
+        rfds = [master_fd]
+        if not sys.stdin.closed:
+            rfds.append(stdin_fd)
+        ready, _, _ = select.select(rfds, [], [])
+
+        if master_fd in ready:
+            try:
+                data = os.read(master_fd, 4096)
+            except OSError:
+                break
+            if not data:
+                break
+
+            text = data.decode(errors="replace")
+            sys.stdout.write(text)
+            sys.stdout.flush()
+
+            read_buffer += text
+            if len(read_buffer) > 8192:
+                read_buffer = read_buffer[-8192:]
+
+            if copied_url is None:
+                match = URL_RE.search(read_buffer)
+                if match:
+                    copied_url = match.group(0)
+                    try:
+                        subprocess.run(["pbcopy"], input=copied_url, text=True, check=True)
+                        print(
+                            "\n[claude-login-phone] ログイン URL をクリップボードへコピーしました。",
+                            file=sys.stderr,
+                            flush=True,
+                        )
+                    except Exception as exc:
+                        print(
+                            f"\n[claude-login-phone] pbcopy 失敗: {exc}",
+                            file=sys.stderr,
+                            flush=True,
+                        )
+
+        if stdin_fd in ready:
+            try:
+                user_input = os.read(stdin_fd, 1024)
+            except OSError:
+                user_input = b""
+            if not user_input:
+                try:
+                    os.close(master_fd)
+                except OSError:
+                    pass
+                break
+            os.write(master_fd, user_input)
+
+    _, status = os.waitpid(pid, 0)
+    if os.WIFEXITED(status):
+        return os.WEXITSTATUS(status)
+    if os.WIFSIGNALED(status):
+        return 128 + os.WTERMSIG(status)
+    return 1
+
+
+raise SystemExit(main())
+PY
+}
+
+alias clogin='claude-login-phone'
+
 # 削除済みの Bun preload を過去シェルから引き継いだ場合に無効化する
 case "${BUN_OPTIONS:-}" in
   *"$HOME/.claude/bun-ipv4-preload.js"*) unset BUN_OPTIONS ;;
