@@ -537,7 +537,8 @@ if which plenv > /dev/null; then eval "$(plenv init - zsh)"; fi
 export RENOVATE_SAFETY_LANGUAGE=ja
 
 # claude code
-# `claude auth login` の URL を拾ってクリップボードへコピーする
+# リモート端末からの再ログイン用。`claude setup-token` の URL を拾い、
+# 発行された OAuth token を ~/.config/claude/oauth-token.env に保存する。
 claude-login-phone() {
   python3 - "$@" <<'PY'
 import os
@@ -548,18 +549,36 @@ import subprocess
 import sys
 
 
+ANSI_RE = re.compile(r"\x1b(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])")
 URL_RE = re.compile(r"https://[^\s)>\"]+")
+TOKEN_RE = re.compile(r"sk-ant-oat01-[A-Za-z0-9_-]+")
+TOKEN_ENV_PATH = os.path.expanduser("~/.config/claude/oauth-token.env")
+
+
+def strip_ansi(text: str) -> str:
+    return ANSI_RE.sub("", text)
+
+
+def save_token(token: str) -> None:
+    os.makedirs(os.path.dirname(TOKEN_ENV_PATH), exist_ok=True)
+    fd = os.open(TOKEN_ENV_PATH, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+    with os.fdopen(fd, "w") as fh:
+        fh.write(f"export CLAUDE_CODE_OAUTH_TOKEN='{token}'\n")
 
 
 def main() -> int:
-    argv = ["claude", "auth", "login", *sys.argv[1:]]
+    argv = ["claude", "setup-token", *sys.argv[1:]]
     copied_url = None
+    saved_token = None
     read_buffer = ""
     stdin_open = not sys.stdin.closed
 
     pid, master_fd = pty.fork()
     if pid == 0:
-        os.execvp(argv[0], argv)
+        env = os.environ.copy()
+        env.setdefault("COLUMNS", "500")
+        env.setdefault("LINES", "40")
+        os.execvpe(argv[0], argv, env)
 
     stdin_fd = sys.stdin.fileno()
     while True:
@@ -581,15 +600,16 @@ def main() -> int:
             sys.stdout.flush()
 
             read_buffer += text
-            if len(read_buffer) > 8192:
-                read_buffer = read_buffer[-8192:]
+            if len(read_buffer) > 32768:
+                read_buffer = read_buffer[-32768:]
 
             if copied_url is None:
-                match = URL_RE.search(read_buffer)
+                plain = strip_ansi(read_buffer)
+                match = URL_RE.search(plain)
                 if match:
                     copied_url = match.group(0)
                     print(
-                        "\n[claude-login-phone] この URL を iPhone で開いてください:",
+                        "\n[claude-login-phone] この URL を iPhone / Termius で開いてください:",
                         file=sys.stderr,
                         flush=True,
                     )
@@ -607,6 +627,23 @@ def main() -> int:
                             file=sys.stderr,
                             flush=True,
                         )
+
+            if saved_token is None:
+                plain_compact = strip_ansi(read_buffer).replace("\r", "").replace("\n", "")
+                match = TOKEN_RE.search(plain_compact)
+                if match:
+                    saved_token = match.group(0)
+                    save_token(saved_token)
+                    print(
+                        f"\n[claude-login-phone] OAuth token を {TOKEN_ENV_PATH} に保存しました。",
+                        file=sys.stderr,
+                        flush=True,
+                    )
+                    print(
+                        "[claude-login-phone] このシェルでも token を読み込みます。",
+                        file=sys.stderr,
+                        flush=True,
+                    )
 
         if stdin_fd in ready:
             try:
@@ -630,9 +667,18 @@ try:
 except KeyboardInterrupt:
     raise SystemExit(130)
 PY
+  local status=$?
+  if [ -f "$HOME/.config/claude/oauth-token.env" ]; then
+    source "$HOME/.config/claude/oauth-token.env"
+  fi
+  return $status
 }
 
 alias clogin='claude-login-phone'
+
+if [ -f "$HOME/.config/claude/oauth-token.env" ]; then
+  source "$HOME/.config/claude/oauth-token.env"
+fi
 
 # 削除済みの Bun preload を過去シェルから引き継いだ場合に無効化する
 case "${BUN_OPTIONS:-}" in
