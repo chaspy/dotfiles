@@ -555,6 +555,7 @@ def main() -> int:
     argv = ["claude", "auth", "login", *sys.argv[1:]]
     copied_url = None
     read_buffer = ""
+    stdin_open = not sys.stdin.closed
 
     pid, master_fd = pty.fork()
     if pid == 0:
@@ -563,7 +564,7 @@ def main() -> int:
     stdin_fd = sys.stdin.fileno()
     while True:
         rfds = [master_fd]
-        if not sys.stdin.closed:
+        if stdin_open:
             rfds.append(stdin_fd)
         ready, _, _ = select.select(rfds, [], [])
 
@@ -607,11 +608,8 @@ def main() -> int:
             except OSError:
                 user_input = b""
             if not user_input:
-                try:
-                    os.close(master_fd)
-                except OSError:
-                    pass
-                break
+                stdin_open = False
+                continue
             os.write(master_fd, user_input)
 
     _, status = os.waitpid(pid, 0)
@@ -621,8 +619,10 @@ def main() -> int:
         return 128 + os.WTERMSIG(status)
     return 1
 
-
-raise SystemExit(main())
+try:
+    raise SystemExit(main())
+except KeyboardInterrupt:
+    raise SystemExit(130)
 PY
 }
 
