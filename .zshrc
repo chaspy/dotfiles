@@ -44,6 +44,8 @@ __uv_completion_patch
 # alias
 alias codex='codex --search'
 alias wb='workbloom'
+alias myassistant='zellij a myassistant'
+alias myassistant-codex='zellij a myassistant-codex'
 
 alias grp='cd $(ghq root)/$(ghq list | peco)'
 alias pcd='cd $(dirname $(find . | peco))'
